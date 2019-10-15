@@ -14,7 +14,7 @@ Functionality and MVP Features
 MVPs
 * Be able to log into a personal Spotify account
 * Be able to communicate with Spotify API to render danceability factor of any song in their library
-* Style with visuals that are appriate for each song and mood
+* Style with visuals that are appropriate for each song and mood
 * Use D3 to display the dancebility of one or multiple songs or a whole list of songs
 
 Development Timeline
@@ -37,3 +37,4 @@ Development Timeline
 * Make it look cool and attractive
 * Make it responsive depending on which song is playing
 
+![alt text](https://wireframe.cc/fiakf2)
