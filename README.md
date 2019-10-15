@@ -2,7 +2,7 @@ Welcome to Danceability!
 
 Background and Overview
 * This is a data visualization tool that will allow you to enter any song and see it's danceability factor. It will also allow you to view the most danceable songs as rated by Spotify's API. Of course, you will be able to listen to the song and dance to it on the spot (or not)!
-* The motivation for this project was that I wanted to do somethine simple that was music related and uses Spotify's API.
+* The motivation for this project was that I wanted to do something simple that was music related and uses Spotify's API.
 
 Functionality and MVP Features
 * Vanilla JavaScipt for functionality
