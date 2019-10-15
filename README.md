@@ -18,6 +18,7 @@ MVPs
 * Use D3 to display the dancebility of one or multiple songs or a whole list of songs
 
 Development Timeline
+
 `Day 1`
 Get familiar with Spotify API and D3 library and how I will implement them in my project
 Complete project skeleton
