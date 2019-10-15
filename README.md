@@ -1,8 +1,8 @@
 Welcome to Danceability!
 
-BAckground and Overview
-* This is a data visualization tool that will allow you to enter any song and see it's danceability factor. It will also allow you to view the most danceable songs as rated by Spotify's API.
-* The motivation for this project was that I wanted to do somethine simple that was music related and use Spotify's API.
+Background and Overview
+* This is a data visualization tool that will allow you to enter any song and see it's danceability factor. It will also allow you to view the most danceable songs as rated by Spotify's API. Of course, you will be able to listen to the song and dance to it on the spot (or not)!
+* The motivation for this project was that I wanted to do somethine simple that was music related and uses Spotify's API.
 
 Functionality and MVP Features
 * Vanilla JavaScipt for functionality
@@ -15,11 +15,11 @@ MVPs
 * Be able to log into a personal Spotify account
 * Be able to communicate with Spotify API to render danceability factor of any song in their library
 * Style with visuals that are appriate for each song and mood
-* Use D3 to diplay the dancebility of one or multiple songs or a whole list of songs
+* Use D3 to display the dancebility of one or multiple songs or a whole list of songs
 
 Development Timeline
 `Day 1`
-Get familiar with Spotify API and D# library and how I will implement them in my project
+Get familiar with Spotify API and D3 library and how I will implement them in my project
 Complete project skeleton
 Start CSS
 
