@@ -43,4 +43,8 @@ Development Timeline
 * Finish styling and test run the data visualization
 * Make it look cool and attractive
 
+<<<<<<< HEAD
 ![alt text](https://wireframe.cc/fiakf2)
+=======
+![alt text](https://wireframe.cc/fiakf2)
+>>>>>>> 293999982ab03f2ff8d5a0ff318c050cde91c1e4
