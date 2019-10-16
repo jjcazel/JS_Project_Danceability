@@ -10,47 +10,33 @@ app.get("/", (request, res) => {
     res.sendFile(path.join(__dirname, "./dist/index.html"));
 });
 
+app.get('/login', (request, res) => {
+    res.redirect('https://accounts.spotify.com/authorize?client_id=efe8564cdab24aeda7bf97b81c57683d&response_type=code&redirect_uri=https%3A%2F%2Flocalhost%3A8000')
+})
 // create route to get single book by its isbn
-app.get("/books/:isbn", (request, response) => {
+// app.post("/track", (request, response) => {
 //     // make api call using fetch
-//     fetch(
-//         `http://openlibrary.org/api/books?bibkeys=ISBN:${request.params.isbn}&format=json&jscmd=data`
-//     )
-//         .then(response => {
-//             return response.text();
-//         })
-//         .then(body => {
-//             let results = JSON.parse(body);
-//             console.log(results); // logs to server
-//             response.send(results); // sends to frontend
-//         });
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
-    const access_url = "https://accounts.spotify.com/api/token";
-    fetch(proxyurl + access_url, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: `grant_type = client_credentials & client_id=${'efe8564cdab24aeda7bf97b81c57683d'}& client_secret=${'01ae9dd3d2204d35886d7012f6c32540'}`
-    })
-    const trackId = '2TpxZ7JUBn3uw46aR7qd6V'
+//  
+   
+    // const access_url = "https://accounts.spotify.com/api/token";
+    // const trackId = '2TpxZ7JUBn3uw46aR7qd6V'
+    // console.log('fetching')
+    // fetch(access_url, {
+    //     method: "POST",
+    //     headers: {
+    //         "Content-Type": "application/x-www-form-urlencoded"
+    //     },
+    //     body: {grant_type: client_credentials & client_id=${'efe8564cdab24aeda7bf97b81c57683d'}& client_secret=${'01ae9dd3d2204d35886d7012f6c32540'}`
+    // }).then(res => response.text('success'), error => response.send(error))
 
-    const audioFeatures = fetch(`https://api.spotify.com/v1/audio-features/${trackId}`)
-    console.log(audioFeatures)
-    const danceability = audioFeatures[danceability]
-});
+    // const audioFeatures = fetch(`https://api.spotify.com/v1/audio-features/${trackId}`)
+    // console.log(audioFeatures)
+    // const danceability = audioFeatures[danceability]
+// });
 
 // // create a search route
 // app.get("/search", (request, response) => {
-//     fetch(`http://openlibrary.org/search.json?q=${request.query.string}`)
-//         .then(response => {
-//             return response.text();
-//         })
-//         .then(body => {
-//             let results = JSON.parse(body);
-//             console.log(results);
-//             response.send(results);
-//         });
+//     fetch
 // });
 
 app.listen(PORT, () => {
