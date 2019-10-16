@@ -23,18 +23,24 @@ Development Timeline
 
 * Get familiar with Spotify API and D3 library and how I will implement them in my project
 * Complete project skeleton
-* Start CSS
+
 
 `Day 2`
 
 * Be able to view a basic page on local host. 
+* Set up a Node/Express backend to communicate with Spotify API
 * Communicate smoothly between my app and the Spotify API. 
-* Implement the D3 structure of my choice to visulize the data
+
 
 `Day 3`
 
+* Start CSS
+* Implement the D3 structure of my choice to visulize the data
+* Make it responsive depending on which song is playing
+
+`Day 4`
+
 * Finish styling and test run the data visualization
 * Make it look cool and attractive
-* Make it responsive depending on which song is playing
 
 ![alt text](https://wireframe.cc/fiakf2)
