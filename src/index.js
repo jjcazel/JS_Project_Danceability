@@ -2,7 +2,11 @@ import './styles/index.scss';
 
 window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('app').innerText = "Hello World!";
+    
+    
 });
+
+
 
 // app.get('/login', function (req, res) {
 //     var scopes = 'user-read-private user-read-email';
