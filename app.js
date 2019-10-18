@@ -2,22 +2,22 @@ const express = require("express");
 const app = express();
 const path = require("path");
 var SpotifyWebApi = require('spotify-web-api-node');
-const PORT = process.env.PORT || 443; // process.env accesses heroku's environment variables
+const PORT = process.env.PORT || 8000; // process.env accesses heroku's environment variables
 
 
-var fs = require('fs')
-var https = require('https')
+const redirect_uri = 'http://localhost:8000/app'
+let client_id = ''
+let client_secret = ''
 
-var certOptions = {
-    key: fs.readFileSync(path.resolve('server.key')),
-    cert: fs.readFileSync(path.resolve('server.crt'))
-}
-
-const redirect_uri = 'https://localhost:443/app'
+const spotifyApi = new SpotifyWebApi({
+    clientId: 'efe8564cdab24aeda7bf97b81c57683d',
+    clientSecret: '01ae9dd3d2204d35886d7012f6c32540',
+    redirectUri: redirect_uri
+});
 
 app.use(express.static("dist"));
 
-app.get("/", (request, res) => {
+app.get("/", (request, res) => {    
     res.sendFile(path.join(__dirname, "./dist/index.html"));
 });
 
@@ -25,12 +25,66 @@ app.get('/login', (request, res) => {
     res.redirect(`https://accounts.spotify.com/authorize?client_id=efe8564cdab24aeda7bf97b81c57683d&response_type=code&redirect_uri=${redirect_uri}`)
     
 })
+
+let audio_features = []
+
 app.get('/app', (request, res) => {
-    console.log(res)
+    console.log(request.query)
     // const authorizationCode = request.params.authorizationCode
-    res.send('hello')
+    // res.send('hello')
     // res.redirect(`https://accounts.spotify.com/authorize?client_id=efe8564cdab24aeda7bf97b81c57683d&response_type=code&redirect_uri=${redirect_uri}`)
-    
+    spotifyApi.authorizationCodeGrant(request.query.code).then(function (data) {
+        spotifyApi.setAccessToken(data.body.access_token);
+        spotifyApi.setRefreshToken(data.body.refresh_token);
+        return spotifyApi.getMe()
+
+    }).then(function (data) {
+        spotifyApi
+            .getMyTopTracks({ limit: 50 })
+            .then(function (data) {
+                return data.body.items.map(track => {
+                    // if (!track.name.includes(" ")) {
+                      
+                    return track.id
+                // }
+            })
+            .then(function (trackIds) {
+                return spotifyApi.getAudioFeaturesForTracks(trackIds)
+            })
+            .then(function (data) {
+                data.body.audio_features.forEach((track) => {
+                    // song_name = info_medium[idx][track.id][0]
+                    // artist_name = info_medium[idx][track.id][1]
+                    // if (idx <= 4) {
+                        // seeds_medium.push(track.id)
+                    // }
+                    audio_features({
+                        "title": song_name,
+                        "id": track.id,
+                        "artist": artist_name,
+                        // "idx": idx,
+                        //how danceable a song is 0-1
+                        "danceability": track.danceability,
+                        //perceptual measure of intensity and activity
+                        //fast, loud, noisy -> 1
+                        "energy": track.energy,
+                        "key": track.key,
+                        //loudness in decibels, between -60 and 0db
+                        "loudness": track.loudness,
+                        "mode": track.mode,
+                        //0-1, 0.5-1 being instrumentals w/ increasing confidence
+                        "instrumentalness": track.instrumentalness,
+                        //musical positiveness 0-1, sad, depressed, angry -> happy, cheerful, euphoric
+                        "valence": track.valence,
+                        //averaged tempo for a song
+                        "tempo": track.tempo,
+                    })
+                })
+            })
+        })
+
+    }).catch(error => console.log(error))
+
 })
 
    
@@ -53,12 +107,7 @@ app.get('/app', (request, res) => {
 //     fetch
 // });
 
-// app.listen(PORT, () => {
-//     console.log(__dirname);
-//     console.log(`listening on ${PORT}`);
-// })
-
-var server = https.createServer(certOptions, app).listen(PORT, () => {
+app.listen(PORT, () => {
     console.log(__dirname);
     console.log(`listening on ${PORT}`);
 })
