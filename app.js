@@ -11,12 +11,16 @@ app.get("/", (request, res) => {
 });
 
 app.get('/login', (request, res) => {
-    res.redirect('https://accounts.spotify.com/authorize?client_id=efe8564cdab24aeda7bf97b81c57683d&response_type=code&redirect_uri=https%3A%2F%2Flocalhost%3A8000')
+    res.redirect('https://accounts.spotify.com/authorize?client_id=efe8564cdab24aeda7bf97b81c57683d&response_type=code&redirect_uri=https%3A%2F%2Flocalhost%3A8000%2Fapp')
+    
 })
-// create route to get single book by its isbn
-// app.post("/track", (request, response) => {
-//     // make api call using fetch
-//  
+app.get('/app', (request, res) => {
+    debugger
+    const authorizationCode = request.params.authorizationCode
+    res.redirect('https://accounts.spotify.com/authorize?client_id=efe8564cdab24aeda7bf97b81c57683d&response_type=code&redirect_uri=https%3A%2F%2Flocalhost%3A8000%2Fapp')
+    
+})
+
    
     // const access_url = "https://accounts.spotify.com/api/token";
     // const trackId = '2TpxZ7JUBn3uw46aR7qd6V'
@@ -29,12 +33,10 @@ app.get('/login', (request, res) => {
     //     body: {grant_type: client_credentials & client_id=${'efe8564cdab24aeda7bf97b81c57683d'}& client_secret=${'01ae9dd3d2204d35886d7012f6c32540'}`
     // }).then(res => response.text('success'), error => response.send(error))
 
-    // const audioFeatures = fetch(`https://api.spotify.com/v1/audio-features/${trackId}`)
-    // console.log(audioFeatures)
-    // const danceability = audioFeatures[danceability]
+    
 // });
 
-// // create a search route
+// create a search route
 // app.get("/search", (request, response) => {
 //     fetch
 // });
