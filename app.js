@@ -1,8 +1,19 @@
 const express = require("express");
 const app = express();
 const path = require("path");
-const fetch = require("node-fetch");
-const PORT = process.env.PORT || 8000; // process.env accesses heroku's environment variables
+var SpotifyWebApi = require('spotify-web-api-node');
+const PORT = process.env.PORT || 443; // process.env accesses heroku's environment variables
+
+
+var fs = require('fs')
+var https = require('https')
+
+var certOptions = {
+    key: fs.readFileSync(path.resolve('server.key')),
+    cert: fs.readFileSync(path.resolve('server.crt'))
+}
+
+const redirect_uri = 'https://localhost:443/app'
 
 app.use(express.static("dist"));
 
@@ -11,13 +22,14 @@ app.get("/", (request, res) => {
 });
 
 app.get('/login', (request, res) => {
-    res.redirect('https://accounts.spotify.com/authorize?client_id=efe8564cdab24aeda7bf97b81c57683d&response_type=code&redirect_uri=https%3A%2F%2Flocalhost%3A8000%2Fapp')
+    res.redirect(`https://accounts.spotify.com/authorize?client_id=efe8564cdab24aeda7bf97b81c57683d&response_type=code&redirect_uri=${redirect_uri}`)
     
 })
 app.get('/app', (request, res) => {
-    debugger
-    const authorizationCode = request.params.authorizationCode
-    res.redirect('https://accounts.spotify.com/authorize?client_id=efe8564cdab24aeda7bf97b81c57683d&response_type=code&redirect_uri=https%3A%2F%2Flocalhost%3A8000%2Fapp')
+    console.log(res)
+    // const authorizationCode = request.params.authorizationCode
+    res.send('hello')
+    // res.redirect(`https://accounts.spotify.com/authorize?client_id=efe8564cdab24aeda7bf97b81c57683d&response_type=code&redirect_uri=${redirect_uri}`)
     
 })
 
@@ -41,7 +53,12 @@ app.get('/app', (request, res) => {
 //     fetch
 // });
 
-app.listen(PORT, () => {
+// app.listen(PORT, () => {
+//     console.log(__dirname);
+//     console.log(`listening on ${PORT}`);
+// })
+
+var server = https.createServer(certOptions, app).listen(PORT, () => {
     console.log(__dirname);
     console.log(`listening on ${PORT}`);
 })
