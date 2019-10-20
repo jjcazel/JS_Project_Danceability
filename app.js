@@ -26,7 +26,7 @@ app.get('/login', (request, res) => {
     
 })
 
-let audio_features = []
+let audio_features = []  
 let tracj_info = []
 app.get('/app', (request, res) => {
     console.log(1 ,request.query)
@@ -117,3 +117,12 @@ app.listen(PORT, () => {
     console.log(__dirname);
     console.log(`listening on ${PORT}`);
 })
+
+// app.get('/login', function (req, res) {
+//     var scopes = 'user-read-private user-read-email';
+//     res.redirect('https://accounts.spotify.com/authorize' +
+//         '?response_type=code' +
+//         '&client_id=' + my_client_id +
+//         (scopes ? '&scope=' + encodeURIComponent(scopes) : '') +
+//         '&redirect_uri=' + encodeURIComponent(redirect_uri));
+// });
