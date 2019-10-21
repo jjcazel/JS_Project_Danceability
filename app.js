@@ -14,6 +14,11 @@ const spotifyApi = new SpotifyWebApi({
     clientSecret: '01ae9dd3d2204d35886d7012f6c32540',
     redirectUri: redirect_uri
 });
+// const spotifyApi = new SpotifyWebApi({
+//     clientId: client_id,
+//     clientSecret: client_secret,
+//     redirectUri: redirect_uri
+// });
 
 app.use(express.static("dist"));
 
@@ -22,12 +27,26 @@ app.get("/", (request, res) => {
 });
 
 app.get('/login', (request, res) => {
+    // const state = generateRandomString(16);
+    // var scope = 'user-read-private';
     res.redirect(`https://accounts.spotify.com/authorize?client_id=efe8564cdab24aeda7bf97b81c57683d&response_type=code&redirect_uri=${redirect_uri}`)
+    // res.redirect(`https://accounts.spotify.com/authorize?client_id=efe8564cdab24aeda7bf97b81c57683d&response_type=code&scope=${scope}&state=${state}&redirect_uri=${redirect_uri}`)
     
 })
 
+// function generateRandomString(length) {
+//     var text = '';
+//     var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+//     for (var i = 0; i < length; i++) {
+//         text += possible.charAt(Math.floor(Math.random() * possible.length));
+//     }
+//     return text;
+// };
+
+
 let audio_features = []  
-let tracj_info = []
+let track_info = []
 app.get('/app', (request, res) => {
     console.log(1 ,request.query)
     // const authorizationCode = request.params.authorizationCode
@@ -35,17 +54,50 @@ app.get('/app', (request, res) => {
     // res.redirect(`https://accounts.spotify.com/authorize?client_id=efe8564cdab24aeda7bf97b81c57683d&response_type=code&redirect_uri=${redirect_uri}`)
     spotifyApi.authorizationCodeGrant(request.query.code)
     .then(function (data) {
+        console.log("this is my data")
+        console.log(data)
         spotifyApi.setAccessToken(data.body.access_token);
         spotifyApi.setRefreshToken(data.body.refresh_token);
+        // spotifyApi.getArtistAlbums('43ZHCT0cAZBISjO8DG9PnE', { limit: 10, offset: 20 })
+        //     .then(
+        //         function (data) {
+        //             console.log('Album information', data.body);
+        //         },
+        //         function (err) {
+        //             console.error(err);
+        //         }
+        //     );
         return spotifyApi.getMe()
+        // .then(data => {
+        //     console.log("inside getMe()")
+        //     console.log(data)
+        //     spotifyApi
+        //         .getMySavedTracks({ limit: 10, offset: 1 })
+        //         .then(function (data) {
+        //             console.log(data)
+        //             console.log('Done!');
+        //         }, function (err) {
+        //             console.log('Something went wrong!', err);
+        //         });
+        // })
 
     }, error => console.log(2, error))
-    .then(function (data) {
-        console.log(data)
-        return  spotifyApi
-            .getMySavedTracks({ limit: 10, offset: 1 })
-    })
-    .then(console.log, console.log)
+    // .then(function (userData) {
+    //     console.log("second .then")
+    //     console.log(userData) 
+    //     spotifyApi.getMySavedAlbums({
+    //         limit: 1,
+    //         offset: 0
+    //     })
+    //         .then(function (data) {
+    //             // Output items
+    //             console.log(data.body.items);
+    //         }, function (err) {
+    //             console.log('Something went wrong!', err);
+    //         });
+
+    // })
+    .then(() => console.log("success"), () => console.log("error"))
 })
         //     .then(function (data) {
         //         return data.body.items.map(track => {
@@ -93,6 +145,10 @@ app.get('/app', (request, res) => {
 
 // })
 
+app.listen(PORT, () => {
+    console.log(__dirname);
+    console.log(`listening on ${PORT}`);
+})
    
     // const access_url = "https://accounts.spotify.com/api/token";
     // const trackId = '2TpxZ7JUBn3uw46aR7qd6V'
@@ -113,10 +169,6 @@ app.get('/app', (request, res) => {
 //     fetch
 // });
 
-app.listen(PORT, () => {
-    console.log(__dirname);
-    console.log(`listening on ${PORT}`);
-})
 
 // app.get('/login', function (req, res) {
 //     var scopes = 'user-read-private user-read-email';
