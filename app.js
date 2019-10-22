@@ -1,24 +1,10 @@
 const express = require("express");
 const app = express();
 const path = require("path");
-var SpotifyWebApi = require('spotify-web-api-node');
+
 const PORT = process.env.PORT || 8000; // process.env accesses heroku's environment variables
-const axios = require('axios')
 
-const redirect_uri = 'http://localhost:8000/app'
-let client_id = ''
-let client_secret = ''
 
-const spotifyApi = new SpotifyWebApi({
-    clientId: 'efe8564cdab24aeda7bf97b81c57683d',
-    clientSecret: '01ae9dd3d2204d35886d7012f6c32540',
-    redirectUri: redirect_uri
-});
-// const spotifyApi = new SpotifyWebApi({
-//     clientId: client_id,
-//     clientSecret: client_secret,
-//     redirectUri: redirect_uri
-// });
 
 app.use(express.static("dist"));
 
@@ -34,31 +20,17 @@ app.get('/login', (request, res) => {
     
 });
 
-// function generateRandomString(length) {
-//     var text = '';
-//     var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-//     for (var i = 0; i < length; i++) {
-//         text += possible.charAt(Math.floor(Math.random() * possible.length));
-//     }
-//     return text;
-// };
 
 
-let audio_features = []  
-let track_info = []
+
+ 
+
 app.get('/app', (request, res) => {
     // console.log(1, request.query)
     // const authorizationCode = request.params.authorizationCode
     // res.send('hello')
     // res.redirect(`https://accounts.spotify.com/authorize?client_id=efe8564cdab24aeda7bf97b81c57683d&response_type=code&redirect_uri=${redirect_uri}`)
-    // spotifyApi.authorizationCodeGrant(request.query.code)
-    // .then(function (data) {
-        // debugger
-        // console.log("this is my data")
-        // console.log(data)
-        // spotifyApi.setAccessToken(data.body.access_token);
-        // spotifyApi.setRefreshToken(data.body.refresh_token);
+    // 
         // const AccessToken= data.body.access_token;
         // const RefreshToken = data.body.refresh_token;
         // axios.get('https://api.spotify.com/v1/me/top/tracks', { headers: { Authorization: `Bearer ${AccessToken}` } })
@@ -75,14 +47,9 @@ app.get('/app', (request, res) => {
                     console.error(err);
                 }
             );
-    //     return spotifyApi.getMe()
-    //     .then(data => {
-    //         debugger
-    //         console.log("inside getMe()");
-    //         console.log(data);
-    //         debugger
+    
+
             
-        })
 
     // }), error => console.log(2, error)
     // .then(function (userData) {
