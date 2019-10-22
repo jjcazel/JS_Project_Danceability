@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-147237099-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-147237099-3');
+    </script>
+
+    <link href="https://fonts.googleapis.com/css?family=Livvic:100,200,300&display=swap" rel="stylesheet">
+    <script src="//d3js.org/d3.v3.min.js"></script>
+    <!-- <link rel='stylesheet' href='/stylesheets/home.css' /> -->
+</head>
+
+<body>
+    <h1>Welcome!</h1>
+    <button id="signin">Signin</button>
+    <script>
+        function loginPage() {
+            window.location.href = "/login"
+        }
+
+        document.getElementById("signin").addEventListener("click", event => {
+            loginPage();
+        })
+
+        let width = Math.max(960, innerWidth),
+            height = Math.max(500, innerHeight);
+        let i = 0;
+        let svg = d3.select("body").append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+    </script>
+</body>
+
+</html>

@@ -1,9 +1,9 @@
 const SpotifyWebApi = require('spotify-web-api-node');
 const querystring = require('querystring');
-const clusterMaker = require('clusters');
+// const clusterMaker = require('clusters');
 
 
-const redirect_uri = 'http://localhost:8000/app'
+const redirect_uri = 'https://danceability1.herokuapp.com/callback'
 let client_id = '';
 let client_secret = '';
 let stateKey = 'spotify_auth_state';
@@ -21,13 +21,14 @@ const spotifyApi = new SpotifyWebApi({
 // });
 
 module.exports.spotifyLogin = function (res) {
+    debugger
     let state = generateRandomString(16);
     res.cookie(stateKey, state);
     let scope = 'user-top-read user-read-recently-played';
     res.redirect('https://accounts.spotify.com/authorize?' +
         querystring.stringify({
             response_type: 'code',
-            client_id: clientId, // temp. until I get users to login
+            client_id: client_id, // temp. until I get users to login
             scope: scope,
             redirect_uri: redirect_uri,
             state: state
@@ -101,5 +102,6 @@ module.exports.spotifyAuth = function (req, res) {
                 })
             }).catch(error => console.log(error))
         })
+        res.redirect('/yourmud')
     }
             

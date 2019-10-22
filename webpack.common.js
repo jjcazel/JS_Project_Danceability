@@ -9,6 +9,7 @@ module.exports = {
         filename: "[name].js",
         publicPath: "/dist/"
     },
+    target: "web",
     resolve: {
         extensions: [".js"] // if we were using React.js, we would include ".jsx"
     },
