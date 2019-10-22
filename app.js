@@ -3,7 +3,7 @@ const app = express();
 const path = require("path");
 var SpotifyWebApi = require('spotify-web-api-node');
 const PORT = process.env.PORT || 8000; // process.env accesses heroku's environment variables
-
+const axios = require('axios')
 
 const redirect_uri = 'http://localhost:8000/app'
 let client_id = ''
@@ -32,7 +32,7 @@ app.get('/login', (request, res) => {
     res.redirect(`https://accounts.spotify.com/authorize?client_id=efe8564cdab24aeda7bf97b81c57683d&response_type=code&redirect_uri=${redirect_uri}`)
     // res.redirect(`https://accounts.spotify.com/authorize?client_id=efe8564cdab24aeda7bf97b81c57683d&response_type=code&scope=${scope}&state=${state}&redirect_uri=${redirect_uri}`)
     
-})
+});
 
 // function generateRandomString(length) {
 //     var text = '';
@@ -48,57 +48,49 @@ app.get('/login', (request, res) => {
 let audio_features = []  
 let track_info = []
 app.get('/app', (request, res) => {
-    console.log(1 ,request.query)
+    // console.log(1, request.query)
     // const authorizationCode = request.params.authorizationCode
     // res.send('hello')
     // res.redirect(`https://accounts.spotify.com/authorize?client_id=efe8564cdab24aeda7bf97b81c57683d&response_type=code&redirect_uri=${redirect_uri}`)
-    spotifyApi.authorizationCodeGrant(request.query.code)
-    .then(function (data) {
-        console.log("this is my data")
-        console.log(data)
-        spotifyApi.setAccessToken(data.body.access_token);
-        spotifyApi.setRefreshToken(data.body.refresh_token);
-        // spotifyApi.getArtistAlbums('43ZHCT0cAZBISjO8DG9PnE', { limit: 10, offset: 20 })
-        //     .then(
-        //         function (data) {
-        //             console.log('Album information', data.body);
-        //         },
-        //         function (err) {
-        //             console.error(err);
-        //         }
-        //     );
-        return spotifyApi.getMe()
-        // .then(data => {
-        //     console.log("inside getMe()")
-        //     console.log(data)
-        //     spotifyApi
-        //         .getMySavedTracks({ limit: 10, offset: 1 })
-        //         .then(function (data) {
-        //             console.log(data)
-        //             console.log('Done!');
-        //         }, function (err) {
-        //             console.log('Something went wrong!', err);
-        //         });
-        // })
+    // spotifyApi.authorizationCodeGrant(request.query.code)
+    // .then(function (data) {
+        // debugger
+        // console.log("this is my data")
+        // console.log(data)
+        // spotifyApi.setAccessToken(data.body.access_token);
+        // spotifyApi.setRefreshToken(data.body.refresh_token);
+        // const AccessToken= data.body.access_token;
+        // const RefreshToken = data.body.refresh_token;
+        // axios.get('https://api.spotify.com/v1/me/top/tracks', { headers: { Authorization: `Bearer ${AccessToken}` } })
+        //     .then(res => {
+                // debugger
+            //     console.log(res)
+            // }, error => console.log(error))
+        spotifyApi.getArtistAlbums('43ZHCT0cAZBISjO8DG9PnE', { limit: 10, offset: 20 })
+            .then(
+                function (data) {
+                    return(data.body);
+                },
+                function (err) {
+                    console.error(err);
+                }
+            );
+    //     return spotifyApi.getMe()
+    //     .then(data => {
+    //         debugger
+    //         console.log("inside getMe()");
+    //         console.log(data);
+    //         debugger
+            
+        })
 
-    }, error => console.log(2, error))
+    // }), error => console.log(2, error)
     // .then(function (userData) {
     //     console.log("second .then")
     //     console.log(userData) 
-    //     spotifyApi.getMySavedAlbums({
-    //         limit: 1,
-    //         offset: 0
-    //     })
-    //         .then(function (data) {
-    //             // Output items
-    //             console.log(data.body.items);
-    //         }, function (err) {
-    //             console.log('Something went wrong!', err);
-    //         });
-
     // })
-    .then(() => console.log("success"), () => console.log("error"))
-})
+   
+    // .then(() => console.log("success"), () => console.log("error"))
         //     .then(function (data) {
         //         return data.body.items.map(track => {
         //             // if (!track.name.includes(" ")) {
