@@ -3,22 +3,22 @@ const querystring = require('querystring');
 // const clusterMaker = require('clusters');
 
 
-const redirect_uri = 'https://danceability1.herokuapp.com/callback'
-let client_id = '';
-let client_secret = '';
+const redirect_uri = 'http://localhost:8000/callback'
+let client_id = 'efe8564cdab24aeda7bf97b81c57683d';
+let client_secret = '01ae9dd3d2204d35886d7012f6c32540';
 let stateKey = 'spotify_auth_state';
 
-const spotifyApi = new SpotifyWebApi({
-    clientId: 'efe8564cdab24aeda7bf97b81c57683d',
-    clientSecret: '01ae9dd3d2204d35886d7012f6c32540',
-    redirectUri: redirect_uri
-});
-
 // const spotifyApi = new SpotifyWebApi({
-//     clientId: client_id,
-//     clientSecret: client_secret,
+//     client_id: ,
+//     clientSecret: ,
 //     redirectUri: redirect_uri
 // });
+
+const spotifyApi = new SpotifyWebApi({
+    client_id: client_id,
+    clientSecret: client_secret,
+    redirectUri: redirect_uri
+});
 
 module.exports.spotifyLogin = function (res) {
     debugger
@@ -49,7 +49,7 @@ function generateRandomString(length) {
 module.exports.spotifyAuth = function (req, res) {
     let track_info = []
     let audio_features = [] 
-    spotifyApi.authorizationCodeGrant(request.query.code).then(function (data) {
+    spotifyApi.authorizationCodeGrant(req.query.code).then(function (data) {
         // debugger
         console.log(data)
         spotifyApi.setAccessToken(data.body.access_token);
@@ -102,6 +102,6 @@ module.exports.spotifyAuth = function (req, res) {
                 })
             }).catch(error => console.log(error))
         })
-        res.redirect('/yourmud')
+        res.redirect('/app')
     }
-            
+
