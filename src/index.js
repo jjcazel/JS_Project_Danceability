@@ -21,7 +21,6 @@ router.get('/callback', function (req, res) {
 
 
 router.get('/app', function (req, res, next) {
-    // console.log(req, res)
     const { audio_features } = req.session
     res.render('visualization', {
         audio_features: audio_features
