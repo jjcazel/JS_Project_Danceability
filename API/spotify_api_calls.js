@@ -6,11 +6,13 @@ const querystring = require('querystring');
 const redirect_uri = 'http://localhost:8000/callback'
 let client_id = 'efe8564cdab24aeda7bf97b81c57683d';
 let client_secret = '01ae9dd3d2204d35886d7012f6c32540';
+// let client_id = '';
+// let client_secret = '';
 let stateKey = 'spotify_auth_state';
 
 // const spotifyApi = new SpotifyWebApi({
-//     client_id: ,
-//     clientSecret: ,
+//     client_id: '',
+//     clientSecret: '',
 //     redirectUri: redirect_uri
 // });
 
@@ -49,11 +51,8 @@ function generateRandomString(length) {
 module.exports.spotifyAuth = function (req, res) {
   let track_info = []
   let audio_features = [] 
-  // console.log("request", req.query.code)
-  // console.log("response", res)
   spotifyApi.authorizationCodeGrant(req.query.code).then(function (data) {
-    // debugger
-    // console.log("inside first .then auth")
+    
     console.log(data)
     spotifyApi.setAccessToken(data.body.access_token);
     spotifyApi.setRefreshToken(data.body.refresh_token);
