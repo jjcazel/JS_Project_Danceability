@@ -9,12 +9,22 @@
 
     </title>
     <link rel='stylesheet' href='/stylesheets/visualization.css' />
-    <link rel='stylesheet' href='/stylesheets/info-modal.css' />
+    <!-- <link rel='stylesheet' href='/stylesheets/info-modal.css' /> -->
 </head>
 
 
 <body>
     <h1>You made it to my App page!</h1>
-
+    <div id='app'></div>
+    <div >
+        <script>
+          let features = <%- JSON.stringify(audio_features) %>  
+          console.log(features)
+          let danceability = document.createElement('div')
+          danceability.innerHTML = features[0].danceability
+          document.getElementById('app').appendChild(danceability)
+        </script>
+        
+    </div>
 </body>
 </html>
