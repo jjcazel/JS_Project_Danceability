@@ -28,7 +28,7 @@ module.exports.spotifyLogin = function (res) {
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
       response_type: 'code',
-      client_id: client_id, // temp. until I get users to login
+      client_id: client_id, 
       scope: scope,
       redirect_uri: redirect_uri,
       state: state
@@ -60,8 +60,6 @@ module.exports.spotifyAuth = function (req, res) {
     return spotifyApi.getMe()
 
   }).then(function (userData) {
-    console.log("inside second .then auth")
-    // console.log(userData)
     spotifyApi
       .getMyTopTracks({ limit: 50 })
       .then(function (data) {
@@ -81,9 +79,7 @@ module.exports.spotifyAuth = function (req, res) {
         data.body.audio_features.forEach((track, idx) => {
           song_name = track_info[idx][track.id][0]
           artist_name = track_info[idx][track.id][1]
-          // if (idx <= 4) {
-          //   audio_features.push(track.id)
-          // }
+    
           audio_features.push({
             "title": song_name,
             "id": track.id,

@@ -24,32 +24,3 @@ app.use('/', index);
 
 module.exports = app;
 
-
-
-// app.use(express.static("dist"));
-
-// app.get("/", (request, res) => {    
-//     res.sendFile(path.join(__dirname, "./dist/index.html"));
-// });
-
-// app.get('/login', (request, res) => {
-    // const state = generateRandomString(16);
-    // var scope = 'user-read-private';
-    // res.redirect(`https://accounts.spotify.com/authorize?client_id=efe8564cdab24aeda7bf97b81c57683d&response_type=code&redirect_uri=${redirect_uri}`)
-    // res.redirect(`https://accounts.spotify.com/authorize?client_id=efe8564cdab24aeda7bf97b81c57683d&response_type=code&scope=${scope}&state=${state}&redirect_uri=${redirect_uri}`)
-    
-// });
-
-// app.get('/app', (request, res) => {
-    // console.log(1, request.query)
-    // const authorizationCode = request.params.authorizationCode
-    // res.send('hello')
-    // res.redirect(`https://accounts.spotify.com/authorize?client_id=efe8564cdab24aeda7bf97b81c57683d&response_type=code&redirect_uri=${redirect_uri}`)
-    // 
-// })
-
-// app.listen(PORT, () => {
-//     console.log(__dirname);
-//     console.log(`listening on ${PORT}`);
-// })
-   
