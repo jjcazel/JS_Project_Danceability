@@ -23,7 +23,9 @@
           let features = <%- JSON.stringify(audio_features) %>  
           console.log(features)
           let danceability = document.createElement('div')
-          danceability.innerHTML = features[0].danceability
+          danceability.innerHTML = features.map( feature => {
+            return feature.danceability
+          })
           document.getElementById('app').appendChild(danceability)
         </script>
         
