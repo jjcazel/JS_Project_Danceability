@@ -6,8 +6,8 @@
         <%= title %>
     </title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-147237099-3"></script>
-    <script>
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-147237099-3"></script> -->
+    <!-- <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
@@ -16,12 +16,12 @@
 
     <link href="https://fonts.googleapis.com/css?family=Livvic:100,200,300&display=swap" rel="stylesheet">
     <script src="//d3js.org/d3.v5.min.js"></script>
-    <!-- <link rel='stylesheet' href='/stylesheets/home.css' /> -->
+    <link rel='stylesheet' href='/stylesheets/home.css' />
 </head>
 
 <body>
-    <h1>Welcome!</h1>
-    <button id="signin">Signin</button>
+    <!-- <h1>Ready to Dance?!?</h1> -->
+    <!-- <button id="signin">Sign in to your Spotify</button> -->
     <script>
         function loginPage() {
             window.location.href = "/login"
@@ -34,9 +34,54 @@
         let width = Math.max(960, innerWidth),
             height = Math.max(500, innerHeight);
         let i = 0;
+        
         let svg = d3.select("body").append("svg")
             .attr("width", width)
             .attr("height", height);
+        
+        svg.append("rect")
+          .attr("width", width)
+          .attr("height", height)
+
+        svg.append("text")
+          .attr("transform",
+            "translate(" + (width / 2) + " ," +
+            (height / 2) + ")")
+          .style("text-anchor", "middle")
+          .text("dance!")
+          .classed("title", true)
+
+        svg.append("text")
+          .attr("transform",
+            "translate(" + (width / 2) + " ," +
+            (height / 2 + 40) + ")")
+          .style("text-anchor", "middle")
+          // .text("(pronounced mood)")
+          .classed("subtitle", true)
+
+         svg.append("rect")
+            .attr("rx", 2)
+            .attr("ry", 2)
+            .attr('x', width / 2 - 100)
+            .attr('y', height / 2 + 90)
+            .attr("width", 200)
+            .attr("height", 58)
+            .attr('stroke', "green")
+            .classed("button-outline", true)
+            .on("click", loginPage)
+            .attr("fill", "#32cd32")
+
+          svg.append("g")
+            .attr("transform",
+              "translate(" + (width / 2 - 75) + " ," +
+              (height / 2 + 125) + ")")
+            .attr('stroke', "white")
+            .classed("button-outline", true)
+            .attr('font-weight', 100)
+            .on("click", loginPage)
+            .append("text")
+            .text("log in with spotify")
+            .classed("button", true)
 
     </script>
 </body>
