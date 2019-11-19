@@ -14,17 +14,18 @@
 
 
 <body>
-  <div class="modal-background modal1" onclick="closeModal()">
-    <div class="modal-child time-period">
-      <div class="exit-modal">X</div>
-    <h1>You made it to my App page!</h1>
-    <h1>This is where my data and D3 will go!</h1>
-    
+<div class="modal-background modal0 show-modal" onclick="closeModal()">
+  <div class="modal-child welcome" id="welcome-modal">
+    <div class="exit-modal">X</div>
+      <h1>danceability!</h1>
+      <p><strong class="emphasis">see the danceability factor</strong> of your top Spotify tracks</p>
+      <p>or <strong class="emphasis">hover over any circles</strong> to see your songs!</p>
   </div>
+</div>
   
   <div id='app'></div>
   <div >
-    <h2>The danceability factor of my first track</h2>
+    <!-- <h2>The danceability factor of my first track</h2> -->
       <script>
         let features = <%- JSON.stringify(audio_features) %>  
           console.log(features)
@@ -43,14 +44,17 @@
         return feature.danceability
       })
     document.getElementById('app').appendChild(danceability)
+    
+    const modals = document.getElementsByClassName("modal-background")
+
 
     function closeModal() {
-        for (let i = 0; i < modals.length; i++) {
-          if (modals[i].classList.contains('show-modal')) {
-            modals[i].classList.remove('show-modal')
-          }
+      for (let i = 0; i < modals.length; i++) {
+        if (modals[i].classList.contains('show-modal')) {
+          modals[i].classList.remove('show-modal')
         }
       }
+    }
   </script>
 
 </html>
