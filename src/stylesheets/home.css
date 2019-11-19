@@ -42,3 +42,8 @@ circle {
     fill: none;
     stroke-width: 2.5px;
 }
+
+.canvas {
+  z-index: -2;
+  opacity: .1;
+}
