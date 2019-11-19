@@ -1,49 +1,55 @@
-body * {
-    font-family: 'Livvic', sans-serif;
-    font-weight: 100;
-    user-select: none;
+body {
+  font-family: 'Indie Flower', cursive;
+  font-weight: 100;
+  user-select: none;
+  position: relative;
+  
+}
+
+canvas {
+  z-index: 1;
+  position: absolute;
+
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .title {
-    font-size: 148px;
+  font-size: 148px;
 }
 
-.subtitle {
-    font-size: 30px;
-}
+/* .subtitle {
+  font-size: 30px;
+} */
 
 .button {
-    font-size: 20px;
-    padding: 10px 20px;
-    width: 200px;
-    cursor: pointer;
-    outline: none;
-    font-weight: 100;
+  font-size: 20px;
+  padding: 10px 20px;
+  width: 200px;
+  cursor: pointer;
+  outline: none;
+  font-weight: 100;
+  z-index: 100;
 }
 
 .button-outline {
-    fill: #32cd32;
+  fill: #32cd32;
+  z-index: 100;
 }
 
 rect {
-    fill:#e3edf91e;
-    pointer-events: all;
-    font-weight: 100;
-}
+  fill:#e3edf91e;
+  pointer-events: all;
+  font-weight: 100;
 
+}
 
 circle {
-    fill: none;
-    stroke-width: 2.5px;
+  fill: none;
+  stroke-width: 2.5px;
 }
 
-.canvas {
-  z-index: -2;
-  opacity: .1;
-}

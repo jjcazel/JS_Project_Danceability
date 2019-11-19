@@ -14,7 +14,7 @@
         gtag('config', 'UA-147237099-3');
     </script> -->
 
-    <link href="https://fonts.googleapis.com/css?family=Livvic:100,200,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap" rel="stylesheet">
     <script src="//d3js.org/d3.v5.min.js"></script>
     <link rel='stylesheet' href='/stylesheets/home.css' />
 </head>
@@ -58,13 +58,6 @@
       .text("dance!")
       .classed("title", true)
 
-    svg.append("text")
-      .attr("transform",
-        "translate(" + (width / 2) + " ," +
-        (height / 2 + 40) + ")")
-      .style("text-anchor", "middle")
-      .classed("subtitle", true)
-
     svg.append("rect")
       .attr("rx", 2)
       .attr("ry", 2)
@@ -86,7 +79,7 @@
       .attr('font-weight', 100)
       .on("click", loginPage)
       .append("text")
-      .text("log in with spotify")
+      .text("log in with Spotify")
       .classed("button", true)
 
     var context = canvas.node().getContext("2d");
@@ -102,7 +95,7 @@
           y = y0 += (y1 - y0) * .1;
 
       d3.select({}).transition()
-        .duration(2000)
+        .duration(1000)
         .ease(Math.sqrt)
         .tween("circle", function () {
           return function (t) {
