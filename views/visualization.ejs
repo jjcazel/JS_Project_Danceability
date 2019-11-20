@@ -8,7 +8,7 @@
     <title>
 
     </title>
-    <link rel='stylesheet' href='src/stylesheets/visualization.css' />
+    <link rel='stylesheet' href='/stylesheets/visualization.css' />
     <link rel='stylesheet' href='/stylesheets/info-modal.css' />
 </head>
 
@@ -25,7 +25,8 @@
   
   <div id='app'></div>
   <div >
-    <!-- <h2>The danceability factor of my first track</h2> -->
+    <div class="page-title">These are your most danceable songs! </div>  
+    <div class="content">
       <script>
         let features = <%- JSON.stringify(audio_features) %>  
           console.log(features)
@@ -33,9 +34,15 @@
 
         
       </script>
-  </div>
-
-  </div>
+<div id="links">
+  <a href="mailto:jjcazel@gmail.com" target="_blank"><i class="fas fa-envelope-square"></i></a>
+  <a href="https://www.linkedin.com/in/jared-cazel-ab84a695/" target="_blank"><i class="fab fa-linkedin"></i></a>
+  <a href="https://github.com/jjcazel" target="_blank"><i class="fab fa-github-square"></i></a>
+  <a href="https://angel.co/jared-cazel" target="_blank"><i class="fab fa-angellist"></i></a>
+  <a href="https://jaredcazel.com" target="_blank"><i class="fas fa-folder-open"></i></a>
+</div>
+<div class="designed-by">Built by Jared Cazel</div>
+</div>
 </body>
 
   <script>
@@ -46,6 +53,98 @@
     document.getElementById('app').appendChild(danceability)
     
     const modals = document.getElementsByClassName("modal-background")
+
+
+    const colors = ["#FFA69E", "#FAF3DD", "#B8F2E6", "#AED9E0", "#7F899F", "#8FBC8F", "#D8BFD8"]
+    const strokes = ["#CD3434", "#E1C829", "#92C0B7", "#729172", "#336891", "#729172", "#9C829C"]
+
+    const width = 700
+    const height = 600
+    const padding = 50
+    
+    const canvas = d3.select(".canvas")
+
+    const svg = canvas.append("svg")
+      .attr('width', width)
+      .attr('height', height)
+      .attr('padding', 50)
+
+    const x = d3.scaleLinear().domain([0, 1]).range([50, width - 50])
+    const y = d3.scaleLinear().domain([0, 1]).range([height - 50, 50])
+    const xAxis = d3.axisBottom(x).ticks(10)
+    const yAxis = d3.axisLeft(y).ticks(10)
+
+    var div = d3.select("body").append("div")
+      .attr("class", "tooltip")
+      .style("opacity", 0);
+
+    svg.append('g')
+      .attr("class", "axis axis-x")
+      .attr("transform", "translate(10," + (height - 50) + ")")
+      .call(xAxis)
+      .selectAll("text")
+      .style("text-anchor", "end")
+      .attr("dx", ".6em")
+
+    svg.append('g')
+      .attr("class", "axis axis-y")
+      .attr("transform", "translate(60,0)")
+      .call(yAxis);
+
+    var question = svg.append('g')
+      .attr("transform", "translate(80,80)")
+
+    // question.append('rect')
+    //   .attr("class", "question-btn modal4")
+    //   .attr("fill", "rgb(210,210,210)")
+    //   .attr('x', 0)
+    //   .attr('y', -20)
+    //   .attr('rx', "50%")
+    //   .attr('ry', "50%")
+    //   .attr('r', 15)
+
+    // question.append('text')
+    //   .attr('class', "question-btn")
+    //   .attr('x', 7)
+    //   .attr('y', -3)
+    //   .attr("font-size", 18)
+    //   .text("?")
+    //   .attr('fill', 'white')
+
+    svg.append("text")
+      .attr("transform",
+        "translate(" + (width / 2) + " ," +
+        (height) + ")")
+      .attr("dx", "0.5em")
+      .style("text-anchor", "middle")
+      .text("danceability");
+
+    // svg.append("text")
+    //   .attr("transform",
+    //     "translate(" + (width - 100) + " ," +
+    //     (height - 18) + ")")
+    //   .style("text-anchor", "middle")
+    //   .text("happy, cheerful, euphoric --> ")
+    //   .attr("font-size", "12px")
+
+    // svg.append("text")
+    //   .attr("transform",
+    //     "translate(" + (120) + " ," +
+    //     (height - 18) + ")")
+    //   .style("text-anchor", "middle")
+    //   .text("<-- sad, depressed, angry")
+    //   .attr("font-size", "12px")
+
+    svg.append("text")
+      .attr("class", "y-axis-text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0)
+      .attr("x", 0 - (height / 2))
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("energy");
+
+      
 
 
     function closeModal() {

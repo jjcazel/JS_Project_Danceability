@@ -1,67 +1,67 @@
 .modal-background {
-    display: none !important;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.3);
-    z-index: 10;
+  display: none !important;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 10;
 }
 
 .modal-background div {
-    text-align: right;
-    font-weight: 200;
-    font-size: 15px;
+  text-align: right;
+  font-weight: 200;
+  font-size: 15px;
 }
 
 .modal-background div h2 {
-    text-align: right;
+  text-align: right;
 }
 
 .modal-child {
-    position: absolute;
-    background-color: white;
-    height: 280px;
-    width: 400px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 10px 30px 30px 30px;
-    border-radius: 5px;
-    line-height: 17px;
-    box-shadow: 0px 0px 3px 1px rgba(213, 207, 207, 0.776);
-    user-select: none;
+  position: absolute;
+  background-color: white;
+  height: 280px;
+  width: 400px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px 30px 30px 30px;
+  border-radius: 5px;
+  line-height: 17px;
+  box-shadow: 0px 0px 3px 1px rgba(213, 207, 207, 0.776);
+  user-select: none;
 }
 .right-side {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 #links {
-    display: flex;
-    justify-content: center;
-    margin-left: 5px;
+  display: flex;
+  justify-content: center;
+  margin-left: 5px;
 }
 
 .designed-by {
-    align-self: center;
-    margin-left: 0px;
-    margin-bottom: 30px;
-    font-weight: 300;
+  align-self: center;
+  margin-left: 0px;
+  margin-bottom: 30px;
+  font-weight: 300;
 }
 .fab, .fas{
-    margin: 0px 10px 30px 5px;
-    width: 30px;
-    height: 30px;
-    font-size: 40px;
-    color: rgb(225, 225, 225);
-    cursor: pointer;
+  margin: 0px 10px 30px 5px;
+  width: 30px;
+  height: 30px;
+  font-size: 40px;
+  color: rgb(225, 225, 225);
+  cursor: pointer;
 }
 
 .feature-select {
-    width: 430px;
-    height: 350px;
+  width: 430px;
+  height: 350px;
 }
 
 .chart {
@@ -77,7 +77,7 @@ h4 {
 }
 
 .emphasis {
-    color: rgb(139, 139, 235);
+    color: rgb(166, 231, 104);
     font-weight: 300;
 }
 
@@ -115,10 +115,10 @@ h4 {
     background-color: rgb(210, 210, 210);
 }
 
-.modal4 {
+/* .modal4 {
     margin-top: 5px;
     font-size: 19px;
-}
+} */
 
 .show-modal {
     display: block !important;

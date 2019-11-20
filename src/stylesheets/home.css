@@ -3,7 +3,12 @@ body {
   font-weight: 100;
   user-select: none;
   position: relative;
+  /* z-index: auto; */
   
+}
+
+svg {
+  z-index: 2;
 }
 
 canvas {
@@ -16,15 +21,12 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  z-index: 2;
 }
 
 .title {
   font-size: 148px;
 }
-
-/* .subtitle {
-  font-size: 30px;
-} */
 
 .button {
   font-size: 20px;
@@ -33,12 +35,12 @@ body {
   cursor: pointer;
   outline: none;
   font-weight: 100;
-  z-index: 100;
+  z-index: 10;
 }
 
 .button-outline {
   fill: #32cd32;
-  z-index: 100;
+  z-index: 10;
 }
 
 rect {
