@@ -1,114 +1,114 @@
 .content {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .tooltip {	
-    position: absolute;										
-    padding: 8px;					
-    background: lightsteelblue;	
-    border: 0px;		
-    border-radius: 2px;			
-    pointer-events: none;	
-    z-index: 10;		
-    font-family: 'Livvic', sans-serif;
-    font-weight: 100;
-    font-size: 11px;
+  position: absolute;										
+  padding: 8px;					
+  background: lightsteelblue;	
+  border: 0px;		
+  border-radius: 2px;			
+  pointer-events: none;	
+  z-index: 10;		
+  font-family: 'Livvic', sans-serif;
+  font-weight: 100;
+  font-size: 11px;
 }
 
 circle:hover {
-    border: 2px solid red;
+  border: 2px solid red;
 }
 
 .axis {
-    font-family: 'Livvic', sans-serif;
-    font-weight: 100;
+  font-family: 'Livvic', sans-serif;
+  font-weight: 100;
 }
 
 body {
-    font-family: 'Livvic', sans-serif;
-    font-weight: 100;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  font-family: 'Livvic', sans-serif;
+  font-weight: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
 }
 
 .content {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
 }
 
 li {
-    list-style: none;
-    padding: 5px 0px;
-    user-select: none;
+  list-style: none;
+  padding: 5px 0px;
+  user-select: none;
 
 }
 
 .page-title {
-    font-size: 30px;
-    display: flex;
-    align-items: center;
-    position: relative;
-    top: 20px;
-    user-select: none;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  top: 20px;
+  user-select: none;
 }
 
 .mud {
-    margin-left: 20px;
-    margin-bottom: 4px;
-    font-size: 50px;
-    font-weight: 700;
-    user-select: none;
+  margin-left: 20px;
+  margin-bottom: 4px;
+  font-size: 50px;
+  font-weight: 700;
+  user-select: none;
 }
 
 .rec-artist {
-    font-size: 12px;
-    font-weight: 200;
+  font-size: 12px;
+  font-weight: 200;
 }
 
 .rec-title {
-    font-size: 15px;
-    font-weight: 100;
+  font-size: 15px;
+  font-weight: 100;
 }
 
 ul {
-    font-size: 24px;
-    font-weight: 400;
-    width: 230px;
+  font-size: 24px;
+  font-weight: 400;
+  width: 230px;
 }
 
 .choice-buttons {
-    display: flex;
-    flex-direction: column;
-    margin-right: 40px;
-    font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 40px;
+  font-size: 18px;
 }
 
 .choice-buttons button {
-    font-size: 18px;
-    border-radius: 3px;
-    padding: 10px 15px;
-    margin: 3px;
-    outline: none;
-    cursor: pointer;
-    font-family: 'Livvic', sans-serif;
-    font-weight: 100;
+  font-size: 18px;
+  border-radius: 3px;
+  padding: 10px 15px;
+  margin: 3px;
+  outline: none;
+  cursor: pointer;
+  font-family: 'Livvic', sans-serif;
+  font-weight: 100;
 }
 
 .choices {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .selected {
-    background-color: rgb(221, 221, 237);
+  background-color: rgb(221, 221, 237);
 }
 
 .titles {
-    user-select: none;
+  user-select: none;
 }
