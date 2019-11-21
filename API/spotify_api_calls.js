@@ -4,23 +4,23 @@ const querystring = require('querystring');
 
 
 const redirect_uri = 'http://localhost:8000/callback'
-let client_id = 'efe8564cdab24aeda7bf97b81c57683d';
-let client_secret = '01ae9dd3d2204d35886d7012f6c32540';
-// let client_id = '';
-// let client_secret = '';
+// let client_id = 'efe8564cdab24aeda7bf97b81c57683d';
+// let client_secret = '01ae9dd3d2204d35886d7012f6c32540';
+let client_id = '';
+let client_secret = '';
 let stateKey = 'spotify_auth_state';
 
-// const spotifyApi = new SpotifyWebApi({
-//     client_id: '',
-//     clientSecret: '',
-//     redirectUri: redirect_uri
-// });
-
 const spotifyApi = new SpotifyWebApi({
-    clientId: client_id,
-    clientSecret: client_secret,
+    client_id: '',
+    clientSecret: '',
     redirectUri: redirect_uri
 });
+
+// const spotifyApi = new SpotifyWebApi({
+//     clientId: client_id,
+//     clientSecret: client_secret,
+//     redirectUri: redirect_uri
+// });
 
 module.exports.spotifyLogin = function (res) {
   debugger
@@ -75,6 +75,7 @@ module.exports.spotifyAuth = function (req, res) {
         return spotifyApi.getAudioFeaturesForTracks(trackIds)
       })
       .then(function (data) {
+        // debugger
         data.body.audio_features.forEach((track, idx) => {
           song_name = track_info[idx][track.id][0]
           artist_name = track_info[idx][track.id][1]
