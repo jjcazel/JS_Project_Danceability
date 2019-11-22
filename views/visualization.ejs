@@ -18,41 +18,79 @@
   <div class="modal-child welcome" id="welcome-modal">
     <div class="exit-modal">X</div>
       <h1>danceability!</h1>
-      <p><strong class="emphasis">see the danceability factor</strong> of your top Spotify tracks</p>
+      <p><strong class="emphasis">Do you like to dance?</strong> see the danceability factor of your top Spotify tracks</p>
       <p>or <strong class="emphasis">hover over any circles</strong> to see your songs!</p>
   </div>
 </div>
   
   <div id='app'></div>
   <div >
-    <div class="page-title">These are your most danceable songs! </div>  
+    <div class="page-title">Welcome to Danceability! </div>  
     <div class="content">
-      <script>
-        let tracks = <%- JSON.stringify(audio_features) %>  
-          tracks.forEach( track => console.log(track.title))
-        let danceability = document.createElement('div')
-        let title = 
+    <script>
+      let danceability = document.createElement('div')
+      let tracks = <%- JSON.stringify(audio_features) %>  
+        tracks.forEach( track => {
 
-        
-      </script>
-<div id="links">
-  <a href="mailto:jjcazel@gmail.com" target="_blank"><i class="fas fa-envelope-square"></i></a>
-  <a href="https://www.linkedin.com/in/jared-cazel-ab84a695/" target="_blank"><i class="fab fa-linkedin"></i></a>
-  <a href="https://github.com/jjcazel" target="_blank"><i class="fab fa-github-square"></i></a>
-  <a href="https://angel.co/jared-cazel" target="_blank"><i class="fab fa-angellist"></i></a>
-  <a href="https://jaredcazel.com" target="_blank"><i class="fas fa-folder-open"></i></a>
-</div>
-<div class="designed-by">Built by Jared Cazel</div>
-</div>
+        })
+      // let title = 
+
+      
+    </script>
+    <div class="choices">
+      <button onclick="updateSelection( energy, 'button1')"
+        class="buttons selected" id="button4">energy</button>
+      <button onclick="updateSelection( danceability, 'button2')" class="buttons"
+        id="button7">danceability</button>
+      <button onclick="updateSelection( tempo, 'button3', null)" class="buttons"
+        id="button5">tempo</button>
+    </div>
+    <br />
+    <div id="links">
+      <a href="mailto:jjcazel@gmail.com" target="_blank"><i class="fas fa-envelope-square"></i></a>
+      <a href="https://www.linkedin.com/in/jared-cazel-ab84a695/" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/jjcazel" target="_blank"><i class="fab fa-github-square"></i></a>
+      <a href="https://angel.co/jared-cazel" target="_blank"><i class="fab fa-angellist"></i></a>
+      <a href="https://jaredcazel.com" target="_blank"><i class="fas fa-folder-open"></i></a>
+    </div>
+    <div class="designed-by">Built by Jared Cazel</div>
+    </div>
 </body>
 
   <script>
 
-    danceability.innerHTML = tracks.map(track => {
-        return track.danceability
-      })
+
+    // danceability.innerHTML = tracks.map(track => {
+    //     return track.danceability
+    //   })
     document.getElementById('app').appendChild(danceability)
     
+    const buttons = document.getElementsByClassName("buttons")
+      for (let i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener('click', function () {
+          if (buttons[i].classList.contains('selected')) {
+            buttons[i].classList.remove('selected')
+          } else {
+            buttons[i].classList.add('selected')
+          }
+        })
+      }
+
+    function updateSelection( song_feature, button) {
+        let length, i
+        if (button === "button1" || button === "button2" || button === "button3") {
+          length = 3
+          i = 0
+        } else {
+          length = 6
+          i = 3
+        }
+        for (i; i < length; i++) {
+          if (buttons[i].classList.contains('selected')) {
+            buttons[i].classList.remove('selected')
+          }
+        }
+      } 
     const modals = document.getElementsByClassName("modal-background")
 
 
@@ -120,21 +158,21 @@
       .style("text-anchor", "middle")
       .text("danceability");
 
-    // svg.append("text")
-    //   .attr("transform",
-    //     "translate(" + (width - 100) + " ," +
-    //     (height - 18) + ")")
-    //   .style("text-anchor", "middle")
-    //   .text("happy, cheerful, euphoric --> ")
-    //   .attr("font-size", "12px")
+    svg.append("text")
+      .attr("transform",
+        "translate(" + (width - 100) + " ," +
+        (height - 18) + ")")
+      .style("text-anchor", "middle")
+      .text("happy, cheerful, euphoric --> ")
+      .attr("font-size", "12px")
 
-    // svg.append("text")
-    //   .attr("transform",
-    //     "translate(" + (120) + " ," +
-    //     (height - 18) + ")")
-    //   .style("text-anchor", "middle")
-    //   .text("<-- sad, depressed, angry")
-    //   .attr("font-size", "12px")
+    svg.append("text")
+      .attr("transform",
+        "translate(" + (120) + " ," +
+        (height - 18) + ")")
+      .style("text-anchor", "middle")
+      .text("<-- sad, depressed, angry")
+      .attr("font-size", "12px")
 
     svg.append("text")
       .attr("class", "y-axis-text")
@@ -145,8 +183,171 @@
       .style("text-anchor", "middle")
       .text("energy");
 
-      
+    function update(data, feature, clust) {
+        let featureTitle
+        let domain
+        let cluster_pt
+        if (feature === "energy") {
+          featureTitle = "energy"
+          cluster_pt = clust[0]
+          if (cluster_pt[2] !== "energy") {
+            cluster_pt.push("energy")
+          }
+          domain = [0, 1.0]
+        } else if (feature === "danceability") {
+          featureTitle = "danceability"
+          cluster_pt = clust[1]
+          if (cluster_pt[2] !== "danceability") {
+            cluster_pt.push("danceability")
+          }
+          domain = [0, 1.0]
+        } else if (feature === "tempo") {
+          featureTitle = "tempo (beats per min)"
+          cluster_pt = clust[2]
+          if (cluster_pt[2] !== "tempo") {
+            cluster_pt.push("tempo")
+          }
+          domain = [0, d3.max(data, function (d) {
+            return d.tempo
+          })]
+        }
+        
+      let new_y = d3.scaleLinear().domain(domain).range([height - 50, 50])
+      let new_yAxis = d3.axisLeft(new_y).ticks(10)
+      svg.select(".axis-y")
+        .transition()
+        .duration(1000)
+        .call(new_yAxis)
+      let yAxisText = svg.selectAll(".y-axis-text")
+      yAxisText.remove()
+      svg.append("text")
+        .attr("class", "y-axis-text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0)
+        .attr("x", 0 - (height / 2))
+        .attr("dy", "1em")
+        .style("text-anchor", "middle")
+        .text(featureTitle)
+      let c = svg.selectAll("ellipse")
+        .data(cluster_pt)
+      c
+        .enter()
+        .append("ellipse")
+        .merge(c)
+        .on("mouseover", function (d) {
+          d3.select(this)
+            .style("opacity", 1)
+          div.transition()
+            .duration(200)
+            .style("opacity", .9)
+            .style("font-size", "14px")
 
+          let feat_rating
+          let val_rating
+          if (cluster_pt[2] !== "tempo") {
+            if (cluster_pt[1] < .4) {
+              feat_rating = "low"
+            } else if (cluster_pt[1] > .6) {
+              feat_rating = "high"
+            } else {
+              feat_rating = "medium"
+            }
+          } else {
+            if (cluster_pt[1] < 78) {
+              feat_rating = "low"
+            } else if (cluster_pt[1] > 120) {
+              feat_rating = "high"
+            } else {
+              feat_rating = "medium"
+            }
+          }
+          if (cluster_pt[0] < .4) {
+            val_rating = "low"
+          } else if (cluster_pt[0] > .6) {
+            val_rating = "high"
+          } else {
+            val_rating = "medium"
+          }
+          div.html("The largest cluster of your listening data lies in " + " <br/> " + "the " + feat_rating + " " + cluster_pt[2] + " and " + val_rating + " valence region.")
+            .style("left", (d3.event.pageX + 20) + "px")
+            .style("top", (d3.event.pageY - 28) + "px");
+        })
+        .on("mouseout", function (d) {
+          d3.select(this)
+            .style("opacity", .25)
+          div.transition()
+            .duration(500)
+            .style("opacity", 0);
+        })
+        .transition()
+        .duration(1000)
+        .attr('cx', (cluster_pt[0] * (width - 70) + 60))
+        .attr('cy', new_y(cluster_pt[1]))
+        .attr('rx', 90)
+        .attr('ry', 90)
+        .style("opacity", 0.25)
+        .attr('stroke', "lightgray")
+        .attr('fill', "lightgray")
+
+      let u = svg.selectAll("circle")
+        .data(data)
+      u
+        .enter()
+        .append("circle")
+        .merge(u)
+        .on("mouseover", function (d) {
+          d3.select(this)
+            .style("opacity", 1)
+          div.transition()
+            .duration(200)
+            .style("opacity", .9);
+          div.html("Rank: " + (d.idx + 1) + "<br/>" + `"${d.title}"` + "<br/>" + d.artist)
+            .style("left", (d3.event.pageX + 20) + "px")
+            .style("top", (d3.event.pageY - 28) + "px");
+        })
+        .on("mouseout", function (d) {
+          d3.select(this)
+            .style("opacity", .6)
+          div.transition()
+            .duration(500)
+            .style("opacity", 0);
+        })
+        .transition()
+        .duration(1000)
+        .attr('cx', function (d) {
+          return (d.valence * (width - 70) + 60)
+        })
+        .attr('cy', function (d) {
+          return new_y(d[feature])
+        })
+        .attr('r', function (d) {
+          return Math.sqrt((50 - d.idx) * 15)
+        })
+        .style("opacity", 0.6)
+        .attr('stroke', function (d) {
+          return strokes[d.idx % 7]
+        })
+        .attr('fill', function (d) {
+          return colors[d.idx % 7]
+        })
+      }
+
+    // update(current_selection, current_feature, current_cluster)
+
+    // const btns = document.getElementsByClassName("question-btn")
+    
+    // const modals = document.getElementsByClassName("modal-background")
+    // const temp = modals[3]
+    // modals[2] = temp
+    // for (let i = 0; i < btns.length; i++) {
+    //   btns[i].addEventListener('click', function () {
+    //     if (modals[i].classList.contains('show-modal')) {
+    //       modals[i].classList.remove('show-modal')
+    //     } else {
+    //       modals[i].classList.add('show-modal')
+    //     }
+    //   })
+    // }
 
     function closeModal() {
       for (let i = 0; i < modals.length; i++) {
