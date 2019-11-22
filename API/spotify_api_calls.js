@@ -4,49 +4,42 @@ const querystring = require('querystring');
 
 
 const redirect_uri = 'http://localhost:8000/callback'
-let client_id = 'efe8564cdab24aeda7bf97b81c57683d';
-let client_secret = '01ae9dd3d2204d35886d7012f6c32540';
-// let client_id = '';
-// let client_secret = '';
+// let client_id = 'efe8564cdab24aeda7bf97b81c57683d';
+// let client_secret = '01ae9dd3d2204d35886d7012f6c32540';
+let client_id = '';
+let client_secret = '';
 let stateKey = 'spotify_auth_state';
 
-// const spotifyApi = new SpotifyWebApi({
-//     client_id: '',
-//     clientSecret: '',
-//     redirectUri: redirect_uri
-// });
-
-const spotifyApi = new SpotifyWebApi({
-    clientId: client_id,
-    clientSecret: client_secret,
-    redirectUri: redirect_uri
-});
 
 module.exports.spotifyLogin = function (res) {
-  // debugger
   let state = generateRandomString(16);
   res.cookie(stateKey, state);
   let scope = 'user-top-read user-read-recently-played';
   res.redirect('https://accounts.spotify.com/authorize?' +
-    querystring.stringify({
-      response_type: 'code',
-      client_id: client_id, 
-      scope: scope,
-      redirect_uri: redirect_uri,
-      state: state
+  querystring.stringify({
+    response_type: 'code',
+    client_id: client_id, 
+    scope: scope,
+    redirect_uri: redirect_uri,
+    state: state
   }));
 };
 
 function generateRandomString(length) {
   let text = '';
   let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
+  
   for (let i = 0; i < length; i++) {
     text += possible.charAt(Math.floor(Math.random() * possible.length));
   }
   return text;
 };
 
+const spotifyApi = new SpotifyWebApi({
+    clientId: client_id,
+    clientSecret: client_secret,
+    redirectUri: redirect_uri
+});
 
 module.exports.spotifyAuth = function (req, res) {
   let track_info = []

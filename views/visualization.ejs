@@ -14,30 +14,22 @@
 
 
 <body>
-<div class="modal-background modal0 show-modal" onclick="closeModal()">
-  <div class="modal-child welcome" id="welcome-modal">
-    <div class="exit-modal">X</div>
-      <h1>danceability!</h1>
-      <p><strong class="emphasis">Do you like to dance?</strong> see the danceability factor of your top Spotify tracks</p>
-      <p>or <strong class="emphasis">hover over any circles</strong> to see your songs!</p>
+  <div class="modal-background modal0 show-modal" onclick="closeModal()">
+    <div class="modal-child welcome" id="welcome-modal">
+      <div class="exit-modal">X</div>
+        <h1>danceability!</h1>
+        <p><strong class="emphasis">Do you like to dance?</strong> see the danceability factor of your top Spotify tracks</p>
+        <p>or <strong class="emphasis">hover over any circles</strong> to see your songs!</p>
+    </div>
   </div>
-</div>
   
-  <div id='app'></div>
+  <!-- <div id='app'></div> -->
+  
   <div >
     <div class="page-title">Welcome to Danceability! </div>  
-    <div class="content">
-    <script>
-      let danceability = document.createElement('div')
-      let tracks = <%- JSON.stringify(audio_features) %>  
-        tracks.forEach( track => {
-
-        })
-      // let title = 
-
-      
-    </script>
-    <div class="choices">
+    <!-- <div class="content"> -->
+  
+    <!-- <div class="choices">
       <button onclick="updateSelection( energy, 'button1')"
         class="buttons selected" id="button4">energy</button>
       <button onclick="updateSelection( danceability, 'button2')" class="buttons"
@@ -45,7 +37,10 @@
       <button onclick="updateSelection( tempo, 'button3', null)" class="buttons"
         id="button5">tempo</button>
     </div>
-    <br />
+    <br /> -->
+
+    <div class="canvas"></div>
+    
     <div id="links">
       <a href="mailto:jjcazel@gmail.com" target="_blank"><i class="fas fa-envelope-square"></i></a>
       <a href="https://www.linkedin.com/in/jared-cazel-ab84a695/" target="_blank"><i class="fab fa-linkedin"></i></a>
@@ -54,45 +49,43 @@
       <a href="https://jaredcazel.com" target="_blank"><i class="fas fa-folder-open"></i></a>
     </div>
     <div class="designed-by">Built by Jared Cazel</div>
-    </div>
+  </div>
+
+  
+
 </body>
 
   <script>
-
-
-    // danceability.innerHTML = tracks.map(track => {
-    //     return track.danceability
-    //   })
-    document.getElementById('app').appendChild(danceability)
     
-    const buttons = document.getElementsByClassName("buttons")
-      for (let i = 0; i < buttons.length; i++) {
-        buttons[i].addEventListener('click', function () {
-          if (buttons[i].classList.contains('selected')) {
-            buttons[i].classList.remove('selected')
-          } else {
-            buttons[i].classList.add('selected')
-          }
-        })
-      }
+    // const buttons = document.getElementsByClassName("buttons")
+    //   for (let i = 0; i < buttons.length; i++) {
+    //     buttons[i].addEventListener('click', function () {
+    //       if (buttons[i].classList.contains('selected')) {
+    //         buttons[i].classList.remove('selected')
+    //       } else {
+    //         buttons[i].classList.add('selected')
+    //       }
+    //     })
+    //   }
 
-    function updateSelection( song_feature, button) {
-        let length, i
-        if (button === "button1" || button === "button2" || button === "button3") {
-          length = 3
-          i = 0
-        } else {
-          length = 6
-          i = 3
-        }
-        for (i; i < length; i++) {
-          if (buttons[i].classList.contains('selected')) {
-            buttons[i].classList.remove('selected')
-          }
-        }
-      } 
-    const modals = document.getElementsByClassName("modal-background")
+    // function updateSelection( song_feature, button) {
+    //     let length, i
+    //     if (button === "button1" || button === "button2" || button === "button3") {
+    //       length = 3
+    //       i = 0
+    //     } else {
+    //       length = 6
+    //       i = 3
+    //     }
+    //     for (i; i < length; i++) {
+    //       if (buttons[i].classList.contains('selected')) {
+    //         buttons[i].classList.remove('selected')
+    //       }
+    //     }
+    //   } 
+    const modals = document.getElementsByClassName("modal-background");
 
+    let tracks = <%- JSON.stringify(audio_features) %>;
 
     const colors = ["#FFA69E", "#FAF3DD", "#B8F2E6", "#AED9E0", "#7F899F", "#8FBC8F", "#D8BFD8"]
     const strokes = ["#CD3434", "#E1C829", "#92C0B7", "#729172", "#336891", "#729172", "#9C829C"]
@@ -108,14 +101,24 @@
       .attr('height', height)
       .attr('padding', 50)
 
-    const x = d3.scaleLinear().domain([0, 1]).range([50, width - 50])
-    const y = d3.scaleLinear().domain([0, 1]).range([height - 50, 50])
-    const xAxis = d3.axisBottom(x).ticks(10)
-    const yAxis = d3.axisLeft(y).ticks(10)
+    const x = d3.scaleLinear().domain([0, 1]).range([50, width - 50]);
+    const y = d3.scaleLinear().domain([0, 1]).range([height - 50, 50]);
+    const xAxis = d3.axisBottom(x).ticks(10);
+    const yAxis = d3.axisLeft(y).ticks(10);
 
     var div = d3.select("body").append("div")
       .attr("class", "tooltip")
-      .style("opacity", 0);
+      .style("opacity", 0)
+
+    svg.append('g')
+        .selectAll("dot")
+        .data(tracks)
+        .enter()
+        .append("circle")
+        .attr("cx", function (d) { return x(d.energy); })
+        .attr("cy", function (d) { return y(d.danceability); })
+        .attr("r", function (d) { return d.idx})
+        .style("fill", "#69b3a2")
 
     svg.append('g')
       .attr("class", "axis axis-x")
@@ -130,8 +133,41 @@
       .attr("transform", "translate(60,0)")
       .call(yAxis);
 
-    var question = svg.append('g')
-      .attr("transform", "translate(80,80)")
+    // var question = svg.append('g')
+    //   .attr("transform", "translate(80,80)")
+
+    // svg.append("text")
+    //   .attr("transform",
+    //     "translate(" + (width / 2) + " ," +
+    //     (height) + ")")
+    //   .attr("dx", "0.5em")
+    //   .style("text-anchor", "middle")
+    //   .text("danceability");
+
+    // svg.append("text")
+    //   .attr("transform",
+    //     "translate(" + (width - 100) + " ," +
+    //     (height - 18) + ")")
+    //   .style("text-anchor", "middle")
+    //   .text("happy, cheerful, euphoric --> ")
+    //   .attr("font-size", "12px")
+
+    // svg.append("text")
+    //   .attr("transform",
+    //     "translate(" + (120) + " ," +
+    //     (height - 18) + ")")
+    //   .style("text-anchor", "middle")
+    //   .text("<-- sad, depressed, angry")
+    //   .attr("font-size", "12px")
+
+    // svg.append("text")
+    //   .attr("class", "y-axis-text")
+    //   .attr("transform", "rotate(-90)")
+    //   .attr("y", 0)
+    //   .attr("x", 0 - (height / 2))
+    //   .attr("dy", "1em")
+    //   .style("text-anchor", "middle")
+    //   .text("energy");
 
     // question.append('rect')
     //   .attr("class", "question-btn modal4")
@@ -150,204 +186,7 @@
     //   .text("?")
     //   .attr('fill', 'white')
 
-    svg.append("text")
-      .attr("transform",
-        "translate(" + (width / 2) + " ," +
-        (height) + ")")
-      .attr("dx", "0.5em")
-      .style("text-anchor", "middle")
-      .text("danceability");
-
-    svg.append("text")
-      .attr("transform",
-        "translate(" + (width - 100) + " ," +
-        (height - 18) + ")")
-      .style("text-anchor", "middle")
-      .text("happy, cheerful, euphoric --> ")
-      .attr("font-size", "12px")
-
-    svg.append("text")
-      .attr("transform",
-        "translate(" + (120) + " ," +
-        (height - 18) + ")")
-      .style("text-anchor", "middle")
-      .text("<-- sad, depressed, angry")
-      .attr("font-size", "12px")
-
-    svg.append("text")
-      .attr("class", "y-axis-text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 0)
-      .attr("x", 0 - (height / 2))
-      .attr("dy", "1em")
-      .style("text-anchor", "middle")
-      .text("energy");
-
-    function update(data, feature, clust) {
-        let featureTitle
-        let domain
-        let cluster_pt
-        if (feature === "energy") {
-          featureTitle = "energy"
-          cluster_pt = clust[0]
-          if (cluster_pt[2] !== "energy") {
-            cluster_pt.push("energy")
-          }
-          domain = [0, 1.0]
-        } else if (feature === "danceability") {
-          featureTitle = "danceability"
-          cluster_pt = clust[1]
-          if (cluster_pt[2] !== "danceability") {
-            cluster_pt.push("danceability")
-          }
-          domain = [0, 1.0]
-        } else if (feature === "tempo") {
-          featureTitle = "tempo (beats per min)"
-          cluster_pt = clust[2]
-          if (cluster_pt[2] !== "tempo") {
-            cluster_pt.push("tempo")
-          }
-          domain = [0, d3.max(data, function (d) {
-            return d.tempo
-          })]
-        }
-        
-      let new_y = d3.scaleLinear().domain(domain).range([height - 50, 50])
-      let new_yAxis = d3.axisLeft(new_y).ticks(10)
-      svg.select(".axis-y")
-        .transition()
-        .duration(1000)
-        .call(new_yAxis)
-      let yAxisText = svg.selectAll(".y-axis-text")
-      yAxisText.remove()
-      svg.append("text")
-        .attr("class", "y-axis-text")
-        .attr("transform", "rotate(-90)")
-        .attr("y", 0)
-        .attr("x", 0 - (height / 2))
-        .attr("dy", "1em")
-        .style("text-anchor", "middle")
-        .text(featureTitle)
-      let c = svg.selectAll("ellipse")
-        .data(cluster_pt)
-      c
-        .enter()
-        .append("ellipse")
-        .merge(c)
-        .on("mouseover", function (d) {
-          d3.select(this)
-            .style("opacity", 1)
-          div.transition()
-            .duration(200)
-            .style("opacity", .9)
-            .style("font-size", "14px")
-
-          let feat_rating
-          let val_rating
-          if (cluster_pt[2] !== "tempo") {
-            if (cluster_pt[1] < .4) {
-              feat_rating = "low"
-            } else if (cluster_pt[1] > .6) {
-              feat_rating = "high"
-            } else {
-              feat_rating = "medium"
-            }
-          } else {
-            if (cluster_pt[1] < 78) {
-              feat_rating = "low"
-            } else if (cluster_pt[1] > 120) {
-              feat_rating = "high"
-            } else {
-              feat_rating = "medium"
-            }
-          }
-          if (cluster_pt[0] < .4) {
-            val_rating = "low"
-          } else if (cluster_pt[0] > .6) {
-            val_rating = "high"
-          } else {
-            val_rating = "medium"
-          }
-          div.html("The largest cluster of your listening data lies in " + " <br/> " + "the " + feat_rating + " " + cluster_pt[2] + " and " + val_rating + " valence region.")
-            .style("left", (d3.event.pageX + 20) + "px")
-            .style("top", (d3.event.pageY - 28) + "px");
-        })
-        .on("mouseout", function (d) {
-          d3.select(this)
-            .style("opacity", .25)
-          div.transition()
-            .duration(500)
-            .style("opacity", 0);
-        })
-        .transition()
-        .duration(1000)
-        .attr('cx', (cluster_pt[0] * (width - 70) + 60))
-        .attr('cy', new_y(cluster_pt[1]))
-        .attr('rx', 90)
-        .attr('ry', 90)
-        .style("opacity", 0.25)
-        .attr('stroke', "lightgray")
-        .attr('fill', "lightgray")
-
-      let u = svg.selectAll("circle")
-        .data(data)
-      u
-        .enter()
-        .append("circle")
-        .merge(u)
-        .on("mouseover", function (d) {
-          d3.select(this)
-            .style("opacity", 1)
-          div.transition()
-            .duration(200)
-            .style("opacity", .9);
-          div.html("Rank: " + (d.idx + 1) + "<br/>" + `"${d.title}"` + "<br/>" + d.artist)
-            .style("left", (d3.event.pageX + 20) + "px")
-            .style("top", (d3.event.pageY - 28) + "px");
-        })
-        .on("mouseout", function (d) {
-          d3.select(this)
-            .style("opacity", .6)
-          div.transition()
-            .duration(500)
-            .style("opacity", 0);
-        })
-        .transition()
-        .duration(1000)
-        .attr('cx', function (d) {
-          return (d.valence * (width - 70) + 60)
-        })
-        .attr('cy', function (d) {
-          return new_y(d[feature])
-        })
-        .attr('r', function (d) {
-          return Math.sqrt((50 - d.idx) * 15)
-        })
-        .style("opacity", 0.6)
-        .attr('stroke', function (d) {
-          return strokes[d.idx % 7]
-        })
-        .attr('fill', function (d) {
-          return colors[d.idx % 7]
-        })
-      }
-
-    // update(current_selection, current_feature, current_cluster)
-
-    // const btns = document.getElementsByClassName("question-btn")
-    
-    // const modals = document.getElementsByClassName("modal-background")
-    // const temp = modals[3]
-    // modals[2] = temp
-    // for (let i = 0; i < btns.length; i++) {
-    //   btns[i].addEventListener('click', function () {
-    //     if (modals[i].classList.contains('show-modal')) {
-    //       modals[i].classList.remove('show-modal')
-    //     } else {
-    //       modals[i].classList.add('show-modal')
-    //     }
-    //   })
-    // }
+    // 
 
     function closeModal() {
       for (let i = 0; i < modals.length; i++) {
