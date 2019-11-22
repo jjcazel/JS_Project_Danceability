@@ -28,9 +28,10 @@
     <div class="page-title">These are your most danceable songs! </div>  
     <div class="content">
       <script>
-        let features = <%- JSON.stringify(audio_features) %>  
-          console.log(audio_features)
+        let tracks = <%- JSON.stringify(audio_features) %>  
+          tracks.forEach( track => console.log(track.title))
         let danceability = document.createElement('div')
+        let title = 
 
         
       </script>
@@ -47,8 +48,8 @@
 
   <script>
 
-    danceability.innerHTML = features.map(feature => {
-        return feature.danceability
+    danceability.innerHTML = tracks.map(track => {
+        return track.danceability
       })
     document.getElementById('app').appendChild(danceability)
     
