@@ -40,7 +40,7 @@
     <br /> -->
 
     <div class="canvas"></div>
-    
+
     <div id="links">
       <a href="mailto:jjcazel@gmail.com" target="_blank"><i class="fas fa-envelope-square"></i></a>
       <a href="https://www.linkedin.com/in/jared-cazel-ab84a695/" target="_blank"><i class="fab fa-linkedin"></i></a>
@@ -49,9 +49,7 @@
       <a href="https://jaredcazel.com" target="_blank"><i class="fas fa-folder-open"></i></a>
     </div>
     <div class="designed-by">Built by Jared Cazel</div>
-  </div>
-
-  
+  </div> 
 
 </body>
 
@@ -91,7 +89,7 @@
     const strokes = ["#CD3434", "#E1C829", "#92C0B7", "#729172", "#336891", "#729172", "#9C829C"]
 
     const width = 700
-    const height = 600
+    const height = 610
     const padding = 50
     
     const canvas = d3.select(".canvas")
@@ -136,13 +134,13 @@
     // var question = svg.append('g')
     //   .attr("transform", "translate(80,80)")
 
-    // svg.append("text")
-    //   .attr("transform",
-    //     "translate(" + (width / 2) + " ," +
-    //     (height) + ")")
-    //   .attr("dx", "0.5em")
-    //   .style("text-anchor", "middle")
-    //   .text("danceability");
+    svg.append("text")
+      .attr("transform",
+        "translate(" + (width / 2) + " ," +
+        (height) + ")")
+      .attr("dx", "0.5em")
+      .style("text-anchor", "middle")
+      .text("energy");
 
     // svg.append("text")
     //   .attr("transform",
@@ -160,14 +158,14 @@
     //   .text("<-- sad, depressed, angry")
     //   .attr("font-size", "12px")
 
-    // svg.append("text")
-    //   .attr("class", "y-axis-text")
-    //   .attr("transform", "rotate(-90)")
-    //   .attr("y", 0)
-    //   .attr("x", 0 - (height / 2))
-    //   .attr("dy", "1em")
-    //   .style("text-anchor", "middle")
-    //   .text("energy");
+    svg.append("text")
+      .attr("class", "y-axis-text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0)
+      .attr("x", 0 - (height / 2))
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("danceability");
 
     // question.append('rect')
     //   .attr("class", "question-btn modal4")
