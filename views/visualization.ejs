@@ -25,8 +25,19 @@
   
   <!-- <div id='app'></div> -->
   
+  <div class="choice-buttons">
+    <div id="links">
+      <a href="mailto:jjcazel@gmail.com" target="_blank"><i class="fas fa-envelope-square"></i></a>
+      <a href="https://www.linkedin.com/in/jared-cazel-ab84a695/" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/jjcazel" target="_blank"><i class="fab fa-github-square"></i></a>
+      <a href="https://angel.co/jared-cazel" target="_blank"><i class="fab fa-angellist"></i></a>
+      <a href="https://jaredcazel.com" target="_blank"><i class="fas fa-folder-open"></i></a>
+    </div>
+    <div class="designed-by">Built by Jared Cazel</div>
+  </div>
+  <div class="page-title">Welcome to Danceability! </div>  
+  <div class="canvas"></div>
   <div >
-    <div class="page-title">Welcome to Danceability! </div>  
     <!-- <div class="content"> -->
   
     <!-- <div class="choices">
@@ -39,16 +50,9 @@
     </div>
     <br /> -->
 
-    <div class="canvas"></div>
+   
 
-    <div id="links">
-      <a href="mailto:jjcazel@gmail.com" target="_blank"><i class="fas fa-envelope-square"></i></a>
-      <a href="https://www.linkedin.com/in/jared-cazel-ab84a695/" target="_blank"><i class="fab fa-linkedin"></i></a>
-      <a href="https://github.com/jjcazel" target="_blank"><i class="fab fa-github-square"></i></a>
-      <a href="https://angel.co/jared-cazel" target="_blank"><i class="fab fa-angellist"></i></a>
-      <a href="https://jaredcazel.com" target="_blank"><i class="fas fa-folder-open"></i></a>
-    </div>
-    <div class="designed-by">Built by Jared Cazel</div>
+    
   </div> 
 
 </body>
@@ -131,8 +135,8 @@
       .attr("transform", "translate(60,0)")
       .call(yAxis);
 
-    // var question = svg.append('g')
-    //   .attr("transform", "translate(80,80)")
+    var question = svg.append('g')
+      .attr("transform", "translate(80,80)")
 
     svg.append("text")
       .attr("transform",
@@ -176,13 +180,13 @@
     //   .attr('ry', "50%")
     //   .attr('r', 15)
 
-    // question.append('text')
-    //   .attr('class', "question-btn")
-    //   .attr('x', 7)
-    //   .attr('y', -3)
-    //   .attr("font-size", 18)
-    //   .text("?")
-    //   .attr('fill', 'white')
+    question.append('text')
+      .attr('class', "question-btn")
+      .attr('x', 7)
+      .attr('y', -3)
+      .attr("font-size", 18)
+      .text("?")
+      .attr('fill', 'white')
 
     // 
 
