@@ -3,8 +3,6 @@ body {
   font-weight: 100;
   user-select: none;
   position: relative;
-  /* z-index: auto; */
-  
 }
 
 svg {
@@ -14,7 +12,6 @@ svg {
 canvas {
   z-index: 1;
   position: absolute;
-
 }
 
 body {
@@ -47,7 +44,6 @@ rect {
   fill:#e3edf91e;
   pointer-events: all;
   font-weight: 100;
-
 }
 
 circle {

@@ -1,8 +1,9 @@
 .content {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: end;
   flex-wrap: wrap;
+  align-items: flex-end;
 }
 
 .tooltip {	
@@ -10,12 +11,12 @@
   padding: 8px;					
   background: lightsteelblue;	
   border: 0px;		
-  border-radius: 2px;			
+  border-radius: 6px;			
   pointer-events: none;	
   z-index: 10;		
-  font-family: 'Livvic', sans-serif;
-  font-weight: 100;
-  font-size: 11px;
+  font-family:  sans-serif;
+  font-weight: 200;
+  font-size: 14px;
 }
 
 circle:hover {
@@ -28,16 +29,10 @@ circle:hover {
 }
 
 body {
-  font-family: 'Livvic', sans-serif;
-  font-weight: 100;
+  font-family: sans-serif;
+  font-weight: 200;
   display: flex;
   flex-direction: column;
-  align-items: center;
-
-}
-
-.content {
-  display: flex;
   align-items: center;
 
 }
@@ -46,7 +41,6 @@ li {
   list-style: none;
   padding: 5px 0px;
   user-select: none;
-
 }
 
 .page-title {

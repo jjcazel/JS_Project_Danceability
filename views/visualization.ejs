@@ -19,7 +19,23 @@
       <div class="exit-modal">X</div>
         <h1>danceability!</h1>
         <p><strong class="emphasis">Do you like to dance?</strong> see the danceability factor of your top Spotify tracks</p>
-        <p>or <strong class="emphasis">hover over any circles</strong> to see your songs!</p>
+        <p><strong class="emphasis">hover over any circles</strong> to see the track info</p>
+    </div>
+  </div>
+  <div class="modal-background modal4" onclick="closeModal()">
+    <div class="modal-child chart">
+      <div class="exit-modal">X</div>
+      <h2>songs</h2>
+      <p>Each bubble is one of your <strong class="emphasis">top 50 played songs</strong> for the time period, where
+        larger bubbles indicate a higher ranking.</p>
+      <br />
+      <h4 class="subtitle">how to read your data</h4>
+      <li><strong class="emphasis">Hover over any bubble</strong> to see the song rank, title, and artist.</li>
+      <li>The x axis is emotional valence, since human reaction to music is also emotional. This is an estimated
+        measurement
+        of <strong class="emphasis">whether the song will make you feel happy or sad.</strong></li>
+      <li>The large gray circle is a measure of the <strong class="emphasis"> strongest cluster of points </strong>within
+        this combination of features so that you can see a general trend in your listening</li>
     </div>
   </div>
   
@@ -31,6 +47,9 @@
         <button onclick="updateSelection( danceability, 'button2')" class="buttons" id="button7">danceability</button>
         <button onclick="updateSelection( tempo, 'button3', null)" class="buttons" id="button5">tempo</button>
       </div> -->
+      <div>
+        Your most danceable song is: 
+      </div>
       <div id="links">
         <a href="mailto:jjcazel@gmail.com" target="_blank"><i class="fas fa-envelope-square"></i></a>
         <a href="https://www.linkedin.com/in/jared-cazel-ab84a695/" target="_blank"><i class="fab fa-linkedin"></i></a>
@@ -72,16 +91,16 @@
   // const colors = ["#FFA69E", "#FAF3DD", "#B8F2E6", "#AED9E0", "#7F899F", "#8FBC8F", "#D8BFD8"]
   const strokes = ["#CD3434", "#E1C829", "#92C0B7", "#729172", "#336891", "#729172", "#9C829C"]
 
-  const width = 700
-  const height = 610
-  const padding = 50
+  const width = 800
+  const height = 690
+  const padding = 60
   
   const canvas = d3.select(".canvas")
 
   const svg = canvas.append("svg")
     .attr('width', width)
     .attr('height', height)
-    .attr('padding', 50)
+    .attr('padding-left', 60)
 
   const x = d3.scaleLinear().domain([0, 1]).range([50, width - 50]);
   const y = d3.scaleLinear().domain([0, 1]).range([height - 50, 50]);
@@ -132,7 +151,7 @@
     .call(xAxis)
     .selectAll("text")
     .style("text-anchor", "end")
-    .attr("dx", ".6em")
+    .attr("dx", ".8em")
 
   svg.append('g')
     .attr("class", "axis axis-y")
@@ -145,8 +164,8 @@
   svg.append("text")
     .attr("transform",
       "translate(" + (width / 2) + " ," +
-      (height) + ")")
-    .attr("dx", "0.5em")
+      (height - 5) + ")")
+    .attr("dx", "0.8em")
     .style("text-anchor", "middle")
     .text("energy");
 
@@ -175,14 +194,14 @@
     .style("text-anchor", "middle")
     .text("danceability");
 
-  // question.append('rect')
-  //   .attr("class", "question-btn modal4")
-  //   .attr("fill", "rgb(210,210,210)")
-  //   .attr('x', 0)
-  //   .attr('y', -20)
-  //   .attr('rx', "50%")
-  //   .attr('ry', "50%")
-  //   .attr('r', 15)
+  question.append('rect')
+    .attr("class", "question-btn modal4")
+    .attr("fill", "rgb(210,210,210)")
+    .attr('x', 0)
+    .attr('y', -20)
+    .attr('rx', "50%")
+    .attr('ry', "50%")
+    .attr('r', 15)
 
   question.append('text')
     .attr('class', "question-btn")
