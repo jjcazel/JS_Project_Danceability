@@ -69,9 +69,8 @@
 
   let tracks = <%- JSON.stringify(audio_features) %>;
 
-  const colors = ["#FFA69E", "#FAF3DD", "#B8F2E6", "#AED9E0", "#7F899F", "#8FBC8F", "#D8BFD8"]
+  // const colors = ["#FFA69E", "#FAF3DD", "#B8F2E6", "#AED9E0", "#7F899F", "#8FBC8F", "#D8BFD8"]
   const strokes = ["#CD3434", "#E1C829", "#92C0B7", "#729172", "#336891", "#729172", "#9C829C"]
-  // var color = d3.scale.category20();
 
   const width = 700
   const height = 610
@@ -100,11 +99,32 @@
       .append("circle")
       .attr("cx", function (d) { return x(d.energy); })
       .attr("cy", function (d) { return y(d.danceability); })
-      .attr("r", function (d) { return d.idx})
+      .attr('r', function (d) {
+        return Math.sqrt((50 - d.idx) * 15)})
+      .style("opacity", 0.6)
       .style("fill", function () {
-      return "hsl(" + Math.random() * 360 + ",90%,40%)";})
-      // .attr('fill', function (d) {
-      // return colors[d.idx % 7]})
+        return "hsl(" + Math.random() * 320 + ",80%,60%)";})
+      .attr('stroke', function (d) {
+        return strokes[d.idx % 7]})
+      .on("mouseover", function (d) {
+        d3.select(this)
+      .style("opacity", 1)
+        div.transition()
+      .duration(200)
+      .style("opacity", .9);
+        div.html("Rank: " + (d.idx + 1) + "<br/>" + `"${d.title}"` + "<br/>" + d.artist + "<br/>" + "Danceability: " +
+        `${d.danceability}` + "<br/>" + "Energy: " + `${d.energy}`)
+      .style("left", (d3.event.pageX + 20) + "px")
+      .style("top", (d3.event.pageY - 28) + "px");})
+      .on("mouseout", function (d) {
+        d3.select(this)
+      .style("opacity", .6)
+        div.transition()
+      .duration(500)
+      .style("opacity", 0);
+      })
+      // .attr('cx', function (d) {
+      //   return (d.energy * (width - 70) + 60)})
 
   svg.append('g')
     .attr("class", "axis axis-x")
