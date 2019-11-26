@@ -23,38 +23,31 @@
     </div>
   </div>
   
-  <!-- <div id='app'></div> -->
-  
-  <div class="choice-buttons">
-    <div id="links">
-      <a href="mailto:jjcazel@gmail.com" target="_blank"><i class="fas fa-envelope-square"></i></a>
-      <a href="https://www.linkedin.com/in/jared-cazel-ab84a695/" target="_blank"><i class="fab fa-linkedin"></i></a>
-      <a href="https://github.com/jjcazel" target="_blank"><i class="fab fa-github-square"></i></a>
-      <a href="https://angel.co/jared-cazel" target="_blank"><i class="fab fa-angellist"></i></a>
-      <a href="https://jaredcazel.com" target="_blank"><i class="fas fa-folder-open"></i></a>
-    </div>
-    <div class="designed-by">Built by Jared Cazel</div>
-  </div>
   <div class="page-title">Welcome to Danceability! </div>  
-  <div class="canvas"></div>
-  <div >
-    <!-- <div class="content"> -->
+  <div class="content">
+    <div class="choice-buttons">
+      <!-- <div class="choices">
+        <button onclick="updateSelection( energy, 'button1')" class="buttons selected" id="button4">energy</button>
+        <button onclick="updateSelection( danceability, 'button2')" class="buttons" id="button7">danceability</button>
+        <button onclick="updateSelection( tempo, 'button3', null)" class="buttons" id="button5">tempo</button>
+      </div> -->
+      <div id="links">
+        <a href="mailto:jjcazel@gmail.com" target="_blank"><i class="fas fa-envelope-square"></i></a>
+        <a href="https://www.linkedin.com/in/jared-cazel-ab84a695/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/jjcazel" target="_blank"><i class="fab fa-github-square"></i></a>
+        <a href="https://angel.co/jared-cazel" target="_blank"><i class="fab fa-angellist"></i></a>
+        <a href="https://jaredcazel.com" target="_blank"><i class="fas fa-folder-open"></i></a>
+      </div>
+      <div class="designed-by">Built by Jared Cazel</div>
+  </div>
   
-    <!-- <div class="choices">
-      <button onclick="updateSelection( energy, 'button1')"
-        class="buttons selected" id="button4">energy</button>
-      <button onclick="updateSelection( danceability, 'button2')" class="buttons"
-        id="button7">danceability</button>
-      <button onclick="updateSelection( tempo, 'button3', null)" class="buttons"
-        id="button5">tempo</button>
-    </div>
-    <br /> -->
-
-   
-
+  <div class="canvas">
+    <circle></circle>
+    <ellipse></ellipse>
+  </div>
+  
+  </div>
     
-  </div> 
-
 </body>
 
   <script>
@@ -70,133 +63,122 @@
     //     })
     //   }
 
-    // function updateSelection( song_feature, button) {
-    //     let length, i
-    //     if (button === "button1" || button === "button2" || button === "button3") {
-    //       length = 3
-    //       i = 0
-    //     } else {
-    //       length = 6
-    //       i = 3
-    //     }
-    //     for (i; i < length; i++) {
-    //       if (buttons[i].classList.contains('selected')) {
-    //         buttons[i].classList.remove('selected')
-    //       }
-    //     }
-    //   } 
-    const modals = document.getElementsByClassName("modal-background");
+  // 
+  
+  const modals = document.getElementsByClassName("modal-background");
 
-    let tracks = <%- JSON.stringify(audio_features) %>;
+  let tracks = <%- JSON.stringify(audio_features) %>;
 
-    const colors = ["#FFA69E", "#FAF3DD", "#B8F2E6", "#AED9E0", "#7F899F", "#8FBC8F", "#D8BFD8"]
-    const strokes = ["#CD3434", "#E1C829", "#92C0B7", "#729172", "#336891", "#729172", "#9C829C"]
+  const colors = ["#FFA69E", "#FAF3DD", "#B8F2E6", "#AED9E0", "#7F899F", "#8FBC8F", "#D8BFD8"]
+  const strokes = ["#CD3434", "#E1C829", "#92C0B7", "#729172", "#336891", "#729172", "#9C829C"]
+  // var color = d3.scale.category20();
 
-    const width = 700
-    const height = 610
-    const padding = 50
-    
-    const canvas = d3.select(".canvas")
+  const width = 700
+  const height = 610
+  const padding = 50
+  
+  const canvas = d3.select(".canvas")
 
-    const svg = canvas.append("svg")
-      .attr('width', width)
-      .attr('height', height)
-      .attr('padding', 50)
+  const svg = canvas.append("svg")
+    .attr('width', width)
+    .attr('height', height)
+    .attr('padding', 50)
 
-    const x = d3.scaleLinear().domain([0, 1]).range([50, width - 50]);
-    const y = d3.scaleLinear().domain([0, 1]).range([height - 50, 50]);
-    const xAxis = d3.axisBottom(x).ticks(10);
-    const yAxis = d3.axisLeft(y).ticks(10);
+  const x = d3.scaleLinear().domain([0, 1]).range([50, width - 50]);
+  const y = d3.scaleLinear().domain([0, 1]).range([height - 50, 50]);
+  const xAxis = d3.axisBottom(x).ticks(10);
+  const yAxis = d3.axisLeft(y).ticks(10);
 
-    var div = d3.select("body").append("div")
-      .attr("class", "tooltip")
-      .style("opacity", 0)
+  var div = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0)
 
-    svg.append('g')
-        .selectAll("dot")
-        .data(tracks)
-        .enter()
-        .append("circle")
-        .attr("cx", function (d) { return x(d.energy); })
-        .attr("cy", function (d) { return y(d.danceability); })
-        .attr("r", function (d) { return d.idx})
-        .style("fill", "#69b3a2")
+  svg.append('g')
+      .selectAll("dot")
+      .data(tracks)
+      .enter()
+      .append("circle")
+      .attr("cx", function (d) { return x(d.energy); })
+      .attr("cy", function (d) { return y(d.danceability); })
+      .attr("r", function (d) { return d.idx})
+      .style("fill", function () {
+      return "hsl(" + Math.random() * 360 + ",90%,40%)";})
+      // .attr('fill', function (d) {
+      // return colors[d.idx % 7]})
 
-    svg.append('g')
-      .attr("class", "axis axis-x")
-      .attr("transform", "translate(10," + (height - 50) + ")")
-      .call(xAxis)
-      .selectAll("text")
-      .style("text-anchor", "end")
-      .attr("dx", ".6em")
+  svg.append('g')
+    .attr("class", "axis axis-x")
+    .attr("transform", "translate(10," + (height - 50) + ")")
+    .call(xAxis)
+    .selectAll("text")
+    .style("text-anchor", "end")
+    .attr("dx", ".6em")
 
-    svg.append('g')
-      .attr("class", "axis axis-y")
-      .attr("transform", "translate(60,0)")
-      .call(yAxis);
+  svg.append('g')
+    .attr("class", "axis axis-y")
+    .attr("transform", "translate(60,0)")
+    .call(yAxis);
 
-    var question = svg.append('g')
-      .attr("transform", "translate(80,80)")
+  var question = svg.append('g')
+    .attr("transform", "translate(80,80)")
 
-    svg.append("text")
-      .attr("transform",
-        "translate(" + (width / 2) + " ," +
-        (height) + ")")
-      .attr("dx", "0.5em")
-      .style("text-anchor", "middle")
-      .text("energy");
+  svg.append("text")
+    .attr("transform",
+      "translate(" + (width / 2) + " ," +
+      (height) + ")")
+    .attr("dx", "0.5em")
+    .style("text-anchor", "middle")
+    .text("energy");
 
-    // svg.append("text")
-    //   .attr("transform",
-    //     "translate(" + (width - 100) + " ," +
-    //     (height - 18) + ")")
-    //   .style("text-anchor", "middle")
-    //   .text("happy, cheerful, euphoric --> ")
-    //   .attr("font-size", "12px")
+  // svg.append("text")
+  //   .attr("transform",
+  //     "translate(" + (width - 100) + " ," +
+  //     (height - 18) + ")")
+  //   .style("text-anchor", "middle")
+  //   .text("happy, cheerful, euphoric --> ")
+  //   .attr("font-size", "12px")
 
-    // svg.append("text")
-    //   .attr("transform",
-    //     "translate(" + (120) + " ," +
-    //     (height - 18) + ")")
-    //   .style("text-anchor", "middle")
-    //   .text("<-- sad, depressed, angry")
-    //   .attr("font-size", "12px")
+  // svg.append("text")
+  //   .attr("transform",
+  //     "translate(" + (120) + " ," +
+  //     (height - 18) + ")")
+  //   .style("text-anchor", "middle")
+  //   .text("<-- sad, depressed, angry")
+  //   .attr("font-size", "12px")
 
-    svg.append("text")
-      .attr("class", "y-axis-text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 0)
-      .attr("x", 0 - (height / 2))
-      .attr("dy", "1em")
-      .style("text-anchor", "middle")
-      .text("danceability");
+  svg.append("text")
+    .attr("class", "y-axis-text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", 0)
+    .attr("x", 0 - (height / 2))
+    .attr("dy", "1em")
+    .style("text-anchor", "middle")
+    .text("danceability");
 
-    // question.append('rect')
-    //   .attr("class", "question-btn modal4")
-    //   .attr("fill", "rgb(210,210,210)")
-    //   .attr('x', 0)
-    //   .attr('y', -20)
-    //   .attr('rx', "50%")
-    //   .attr('ry', "50%")
-    //   .attr('r', 15)
+  // question.append('rect')
+  //   .attr("class", "question-btn modal4")
+  //   .attr("fill", "rgb(210,210,210)")
+  //   .attr('x', 0)
+  //   .attr('y', -20)
+  //   .attr('rx', "50%")
+  //   .attr('ry', "50%")
+  //   .attr('r', 15)
 
-    question.append('text')
-      .attr('class', "question-btn")
-      .attr('x', 7)
-      .attr('y', -3)
-      .attr("font-size", 18)
-      .text("?")
-      .attr('fill', 'white')
+  question.append('text')
+    .attr('class', "question-btn")
+    .attr('x', 7)
+    .attr('y', -3)
+    .attr("font-size", 18)
+    .text("?")
+    .attr('fill', 'white')         
 
-    // 
-
-    function closeModal() {
-      for (let i = 0; i < modals.length; i++) {
-        if (modals[i].classList.contains('show-modal')) {
-          modals[i].classList.remove('show-modal')
-        }
+  function closeModal() {
+    for (let i = 0; i < modals.length; i++) {
+      if (modals[i].classList.contains('show-modal')) {
+        modals[i].classList.remove('show-modal')
       }
     }
+  }
   </script>
 
 </html>
