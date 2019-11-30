@@ -106,3 +106,7 @@ ul {
 .titles {
   user-select: none;
 }
+
+.top-song {
+  padding-bottom: 520px;
+}
