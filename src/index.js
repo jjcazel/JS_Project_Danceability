@@ -4,7 +4,7 @@ const spotifyBackend = require('../API/spotify_api_calls');
 
 router.get('/', function (req, res, next) {
   res.render('index', {
-      title: 'Dance!'
+      title: 'danceability'
   });
 });
 

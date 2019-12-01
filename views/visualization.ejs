@@ -6,10 +6,14 @@
   <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
   <script src="https://d3js.org/d3.v5.min.js" charset="utf-8"></script>
   <title>
-
+    Danceability
   </title>
   <link rel='stylesheet' href='/stylesheets/visualization.css' />
   <link rel='stylesheet' href='/stylesheets/info-modal.css' />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="src/images/favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="src/images/favicon_io/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
 </head>
 
 
@@ -47,9 +51,12 @@
         <button onclick="updateSelection( danceability, 'button2')" class="buttons" id="button7">danceability</button>
         <button onclick="updateSelection( tempo, 'button3', null)" class="buttons" id="button5">tempo</button>
       </div> -->
-      <div class="top-song">
-        Your most danceable song is:
-      </div>
+      <script type="text/javascript">
+        let tracks = <%- JSON.stringify(audio_features) %>;
+        const topTitle = tracks[0].title;
+        
+        // document.getElementById("choice-buttons").innerHTML = "Your most danceable is!"
+      </script>
       <div id="links">
         <a href="mailto:jjcazel@gmail.com" target="_blank"><i class="fas fa-envelope-square"></i></a>
         <a href="https://www.linkedin.com/in/jared-cazel-ab84a695/" target="_blank"><i class="fab fa-linkedin"></i></a>
@@ -86,7 +93,7 @@
   
   const modals = document.getElementsByClassName("modal-background");
 
-  let tracks = <%- JSON.stringify(audio_features) %>;
+  // let tracks = <%- JSON.stringify(audio_features) %>;
 
   // const colors = ["#FFA69E", "#FAF3DD", "#B8F2E6", "#AED9E0", "#7F899F", "#8FBC8F", "#D8BFD8"]
   const strokes = ["#CD3434", "#E1C829", "#92C0B7", "#729172", "#336891", "#729172", "#9C829C"]
