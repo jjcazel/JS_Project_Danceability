@@ -10,10 +10,7 @@
   </title>
   <link rel='stylesheet' href='/stylesheets/visualization.css' />
   <link rel='stylesheet' href='/stylesheets/info-modal.css' />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="src/images/favicon_io/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="src/images/favicon_io/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
+ 
 </head>
 
 
@@ -35,11 +32,10 @@
       <br />
       <h4 class="subtitle">how to read your data</h4>
       <li><strong class="emphasis">Hover over any bubble</strong> to see the song rank, title, and artist.</li>
-      <li>The x axis is emotional valence, since human reaction to music is also emotional. This is an estimated
-        measurement
-        of <strong class="emphasis">whether the song will make you feel happy or sad.</strong></li>
-      <li>The large gray circle is a measure of the <strong class="emphasis"> strongest cluster of points </strong>within
-        this combination of features so that you can see a general trend in your listening</li>
+      <li>The x axis is the energry level. Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity.
+        Typically, energetic tracks feel<strong class="emphasis"> fast, loud, and noisy.</strong></li>
+      <!-- <li>The large gray circle is a measure of the <strong class="emphasis"> strongest cluster of points </strong>within
+        this combination of features so that you can see a general trend in your listening</li> -->
     </div>
   </div>
   
@@ -55,7 +51,7 @@
         let tracks = <%- JSON.stringify(audio_features) %>;
         const topTitle = tracks[0].title;
         
-        // document.getElementById("choice-buttons").innerHTML = "Your most danceable is!"
+        // document.getElementById("choice-buttons").innerHTML = "Your most danceable song is!"
       </script>
       <div id="links">
         <a href="mailto:jjcazel@gmail.com" target="_blank"><i class="fas fa-envelope-square"></i></a>
@@ -216,7 +212,21 @@
     .attr('y', -3)
     .attr("font-size", 18)
     .text("?")
-    .attr('fill', 'white')         
+    .attr('fill', 'white')   
+    
+  const btns = document.getElementsByClassName("question-btn")
+
+  const temp = modals[3]
+  
+  for (let i = 0; i < btns.length; i++) {
+    btns[i].addEventListener('click', function () {
+      if (modals[i].classList.contains('show-modal')) {
+        modals[i].classList.remove('show-modal')
+      } else {
+        modals[i].classList.add('show-modal')
+      }
+    });
+  }
 
   function closeModal() {
     for (let i = 0; i < modals.length; i++) {
