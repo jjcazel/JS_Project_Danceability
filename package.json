@@ -31,6 +31,7 @@
     "router-express": "^1.5.2",
     "sass": "^1.23.0",
     "sass-loader": "^8.0.0",
+    "serve-favicon": "^2.5.0",
     "spotify-web-api-node": "^4.0.0",
     "style-loader": "^1.0.0"
   },
