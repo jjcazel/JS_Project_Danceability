@@ -10,13 +10,13 @@
 }
 
 .modal-background div {
-  text-align: right;
+  text-align: left;
   font-weight: 200;
   font-size: 15px;
 }
 
 .modal-background div h2 {
-  text-align: right;
+  text-align: left;
 }
 
 .modal-child {
@@ -66,7 +66,7 @@
 }
 
 .chart {
-  height: 350px;
+  height: 380px;
 }
 
 h4 {
@@ -78,19 +78,14 @@ h4 {
 }
 
 .emphasis {
-  color: rgb(166, 231, 104);
+  color: rgb(34, 216, 48);
   font-weight: 300;
-}
-
-.time-period {
-  height: 320px;
 }
 
 .subtitle {
   font-size: 17px;
   color: rgb(96, 96, 168);
-  text-align: right;
-
+  text-align: left;
 }
 
 .modal-child li {
