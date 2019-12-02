@@ -5,8 +5,8 @@ const querystring = require('querystring');
 
 // var client_id = '';
 // var client_secret = '';
-// var redirect_uri = 'https://danceability1.herokuapp.com/callback'
-var redirect_uri = 'http://localhost:8000/callback'
+var redirect_uri = 'https://danceability1.herokuapp.com/callback'
+// var redirect_uri = 'http://localhost:8000/callback'
 var stateKey = 'spotify_auth_state';
 let client_id = 'efe8564cdab24aeda7bf97b81c57683d';
 let client_secret = '01ae9dd3d2204d35886d7012f6c32540';
