@@ -10,7 +10,6 @@
   </title>
   <link rel='stylesheet' href='/stylesheets/visualization.css' />
   <link rel='stylesheet' href='/stylesheets/info-modal.css' />
- 
 </head>
 
 
@@ -19,7 +18,7 @@
     <div class="modal-child welcome" id="welcome-modal">
       <div class="exit-modal">X</div>
         <h1>danceability!</h1>
-        <p><strong class="emphasis">Do you like to dance?</strong> see the danceability factor of your top Spotify tracks</p>
+        <p><strong class="emphasis">Click the gray question mark</strong> to find out more about this visualization.</p>
         <p><strong class="emphasis">hover over any circles</strong> to see the track info</p>
     </div>
   </div>
@@ -41,17 +40,14 @@
   <div class="page-title">Welcome to Danceability! </div>  
   <div class="content">
     <div class="choice-buttons">
+      <div id="top-track" class="top-track"></div>
+
       <!-- <div class="choices">
         <button onclick="updateSelection( energy, 'button1')" class="buttons selected" id="button4">energy</button>
         <button onclick="updateSelection( danceability, 'button2')" class="buttons" id="button7">danceability</button>
         <button onclick="updateSelection( tempo, 'button3', null)" class="buttons" id="button5">tempo</button>
       </div> -->
-      <script type="text/javascript">
-        let tracks = <%- JSON.stringify(audio_features) %>;
-        const topTitle = tracks[0].title;
-        
-        // document.getElementById("choice-buttons").innerHTML = "Your most danceable song is!"
-      </script>
+    
       <div id="links">
         <a href="mailto:jjcazel@gmail.com" target="_blank"><i class="fas fa-envelope-square"></i></a>
         <a href="https://www.linkedin.com/in/jared-cazel-ab84a695/" target="_blank"><i class="fab fa-linkedin"></i></a>
@@ -62,34 +58,27 @@
       <div class="designed-by">Built by Jared Cazel</div>
   </div>
   
-  <div class="canvas">
-    <circle></circle>
-    <ellipse></ellipse>
-  </div>
+  <div class="canvas"></div>
   
   </div>
-    
 </body>
 
-  <script>
+<script>
     
-    // const buttons = document.getElementsByClassName("buttons")
-    //   for (let i = 0; i < buttons.length; i++) {
-    //     buttons[i].addEventListener('click', function () {
-    //       if (buttons[i].classList.contains('selected')) {
-    //         buttons[i].classList.remove('selected')
-    //       } else {
-    //         buttons[i].classList.add('selected')
-    //       }
-    //     })
-    //   }
+  // const buttons = document.getElementsByClassName("buttons")
+  //   for (let i = 0; i < buttons.length; i++) {
+  //     buttons[i].addEventListener('click', function () {
+  //       if (buttons[i].classList.contains('selected')) {
+  //         buttons[i].classList.remove('selected')
+  //       } else {
+  //         buttons[i].classList.add('selected')
+  //       }
+  //     })
+  //   }
 
-  // 
-  
   const modals = document.getElementsByClassName("modal-background");
-
-  // let tracks = <%- JSON.stringify(audio_features) %>;
-
+  const tracks = <%- JSON.stringify(audio_features) %>;
+  
   // const colors = ["#FFA69E", "#FAF3DD", "#B8F2E6", "#AED9E0", "#7F899F", "#8FBC8F", "#D8BFD8"]
   const strokes = ["#CD3434", "#E1C829", "#92C0B7", "#729172", "#336891", "#729172", "#9C829C"]
 
@@ -212,7 +201,8 @@
     .attr("font-size", 18)
     .text("?")
     .attr('fill', 'white')   
-    
+  
+  // function to open modal on click of question mark
   const btns = document.getElementsByClassName("question-btn")
 
   const temp = modals[3]
@@ -227,6 +217,25 @@
     });
   }
 
+  // display the most danceable song on the left side
+  let topTitle;
+  let topArtist;
+
+  function sort_by_key(array, key) {
+    return array.sort(function (a, b) {
+      var x = a[key]; var y = b[key];
+      return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    });
+  }
+
+  let sortedTracks = sort_by_key(tracks, 'danceability');
+  // console.log(sortedTracks)
+  topTitle = sortedTracks[49].title;
+  topArtist = sortedTracks[49].artist;
+
+  document.getElementById("top-track").innerHTML = `Your most danceable song is: <br /> <strong class="most-danced">${topTitle} by ${topArtist}</strong>`
+
+  // function to close modals
   function closeModal() {
     for (let i = 0; i < modals.length; i++) {
       if (modals[i].classList.contains('show-modal')) {
