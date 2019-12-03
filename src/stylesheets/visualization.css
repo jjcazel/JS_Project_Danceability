@@ -2,7 +2,7 @@
   width: 100%;
   display: flex;
   justify-content: end;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   align-items: flex-end;
 }
 

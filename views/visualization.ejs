@@ -160,21 +160,21 @@
     .style("text-anchor", "middle")
     .text("energy");
 
-  // svg.append("text")
-  //   .attr("transform",
-  //     "translate(" + (width - 100) + " ," +
-  //     (height - 18) + ")")
-  //   .style("text-anchor", "middle")
-  //   .text("happy, cheerful, euphoric --> ")
-  //   .attr("font-size", "12px")
+  svg.append("text")
+    .attr("transform",
+      "translate(" + (width - 100) + " ," +
+      (height - 18) + ")")
+    .style("text-anchor", "middle")
+    .text("high energy --> ")
+    .attr("font-size", "12px")
 
-  // svg.append("text")
-  //   .attr("transform",
-  //     "translate(" + (120) + " ," +
-  //     (height - 18) + ")")
-  //   .style("text-anchor", "middle")
-  //   .text("<-- sad, depressed, angry")
-  //   .attr("font-size", "12px")
+  svg.append("text")
+    .attr("transform",
+      "translate(" + (120) + " ," +
+      (height - 18) + ")")
+    .style("text-anchor", "middle")
+    .text("<-- low energy")
+    .attr("font-size", "12px")
 
   svg.append("text")
     .attr("class", "y-axis-text")
@@ -233,7 +233,9 @@
   topTitle = sortedTracks[49].title;
   topArtist = sortedTracks[49].artist;
 
-  document.getElementById("top-track").innerHTML = `Your most danceable song is: <br /> <strong class="most-danced">${topTitle} by ${topArtist}</strong>`
+  document.getElementById("top-track").innerHTML = `Your most danceable song is: 
+    <br /> <strong class="most-danced1">${topTitle}</strong> by 
+    <strong class="most-danced">${topArtist}</strong>`
 
   // function to close modals
   function closeModal() {
