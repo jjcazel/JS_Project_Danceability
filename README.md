@@ -1,6 +1,6 @@
 # Welcome to Danceability!
 
-## Background and Overview
+`## Background and Overview`
 Check out the live site [here](https://danceability1.herokuapp.com/)
 
 Danceability is a data visualization tool that will allow you to login to your Spotify account,get your top 50 tracks and see their danceability (and energy) factor. You will see the most danceable songs and their rank according to what you listen to most.
@@ -16,12 +16,12 @@ The motivation for this project was to do something that was music related and u
 * Node.js server and Express.js RESTful Routes
 * D3 data visualization libray -->
 
-## MVPs
+`## MVPs`
 * Log in to a user's Spotify account to get their personalized listening history.
 * Use d3.js library to graph the user's track info with data plot points and render track info in tooltips on mouse hover.
 * Style with CSS and HTML.
 
-### Spotify Login
+`### Spotify Login`
 * allows for each user to login with his/her own credentials
 * makes the appropriate calls to the Spotify Web API with proper OAuth
 
@@ -48,7 +48,7 @@ module.exports.spotifyLogin = function (res) {
 
 ```
 
-### Graphing the data
+`### Graphing the data`
 * Using the d3.js library, the plot points are created as circles based with size based on their rank.
 * Plot points include track info when overed over with the mouse.
 
@@ -87,19 +87,17 @@ svg.append('g')
 
 ```
 
-## Development Timeline
+`## Development Timeline`
 
-* Get familiar with Spotify API and D3 library and how I will implement them in my project
-* Complete project skeleton `4 Days`
+1. Get familiar with Spotify API and d3.js library and how I will implement them in my project     Complete project skeleton. `4 Days`  
 
-* Be able to view a basic page on local host. 
-* Set up a Node/Express server and routes to communicate with Spotify API using the Spotify Web Api helper methods.
-* Communicate smoothly between my app and the Spotify API. `6 Days`
+2. Be able to view a basic page on local host. 
+    Set up a Node/Express server and routes to communicate with Spotify API using the Spotify Web Api helper methods.  
+    Communicate smoothly between my app and the Spotify API. `6 Days`  
 
-* Start CSS
-* Implement the D3 graph, plot points, and toooltips to visulize the data. `3 Days` 
+3. Implement the d3.js graph, plot points, and toooltips to visulize the data. 
+    Start styling with CSS and d3.js `3 Days`  
 
-* Finish styling and test run the data visualization.
-* Finish any improvements to the UI. `4 Days`
+4. Finish any improvements to the UI. `4 Days`  
 
 
