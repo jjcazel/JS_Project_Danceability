@@ -17,7 +17,7 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.4",
-    "css-loader": "^3.2.0",
+    "css-loader": "^6.10.0",
     "debug": "^4.1.1",
     "ejs": "^3.1.7",
     "express": "^4.17.1",
@@ -26,7 +26,7 @@
     "file-system": "^2.2.2",
     "mini-css-extract-plugin": "^0.8.0",
     "node-fetch": "^2.6.7",
-    "postcss-loader": "^3.0.0",
+    "postcss-loader": "^8.1.0",
     "query-string": "^6.8.3",
     "router-express": "^1.5.2",
     "sass": "^1.23.0",
