@@ -12,7 +12,7 @@
 .modal-background div {
   text-align: left;
   font-weight: 200;
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .modal-background div h2 {
@@ -51,7 +51,8 @@
   font-weight: 300;
 }
 
-.fab, .fas{
+.fab,
+.fas {
   margin: 0px 10px 30px 5px;
   width: 30px;
   height: 30px;
@@ -66,7 +67,8 @@
 }
 
 .chart {
-  height: 380px;
+  height: auto;
+  line-height: normal;
 }
 
 h4 {
@@ -112,8 +114,7 @@ h4 {
 }
 
 .modal4 {
-  margin-top: 5px;
-  font-size: 19px;
+  font-size: 20px;
 }
 
 .show-modal {
@@ -136,7 +137,7 @@ h4 {
   cursor: pointer;
   display: flex;
   align-items: left;
-  user-select:none;
+  user-select: none;
   position: relative;
   right: 10px;
   bottom: -20px;
@@ -145,7 +146,6 @@ h4 {
   position: relative;
   font-weight: 800;
   color: gray;
-
 }
 
 .welcome .exit-modal {
@@ -154,14 +154,28 @@ h4 {
   font-size: 20px;
 }
 
-.top-track{
-  padding-bottom: 450px;
+.top-track {
+  padding-bottom: 60px;
+  font-size: 1.5em;
 }
 
-.most-danced{
+.most-danced {
   color: rgb(34, 216, 48);
 }
 
-.most-danced1{
+.most-danced1 {
   color: rgb(34, 216, 48);
+}
+
+@media (max-width: 768px) {
+  .top-track {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 0 20px 0;
+    align-items: center;
+    font-size: 1.2em;
+  }
+  .modal-child {
+    width: 90%;
+  }
 }

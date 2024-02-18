@@ -2,7 +2,7 @@ const app = require('../app');
 const http = require('http');
 const debug = require('debug')
 
-const port = process.env.PORT || 8000; // process.env accesses heroku's environment variables
+const port = process.env.PORT || 8000;
 
 app.set('port', port);
 let server = http.createServer(app);

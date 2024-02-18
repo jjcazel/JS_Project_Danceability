@@ -1,250 +1,304 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Livvic:100,200,300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="//use.fontawesome.com/releases/v5.0.7/css/all.css"
+    />
+    <script src="https://d3js.org/d3.v5.min.js" charset="utf-8"></script>
+    <title>Danceability</title>
+    <link rel="stylesheet" href="/stylesheets/visualization.css" />
+    <link rel="stylesheet" href="/stylesheets/info-modal.css" />
+  </head>
 
-<head>
-  <link href="https://fonts.googleapis.com/css?family=Livvic:100,200,300&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
-  <script src="https://d3js.org/d3.v5.min.js" charset="utf-8"></script>
-  <title>
-    Danceability
-  </title>
-  <link rel='stylesheet' href='/stylesheets/visualization.css' />
-  <link rel='stylesheet' href='/stylesheets/info-modal.css' />
-</head>
-
-
-<body>
-  <div class="modal-background modal0 show-modal" onclick="closeModal()">
-    <div class="modal-child welcome" id="welcome-modal">
-      <div class="exit-modal">X</div>
+  <body>
+    <div class="modal-background modal0 show-modal" onclick="closeModal()">
+      <div class="modal-child welcome" id="welcome-modal">
+        <div class="exit-modal">X</div>
         <h1>danceability!</h1>
-        <p><strong class="emphasis">Click the gray question mark</strong> to find out more about this visualization.</p>
-        <p><strong class="emphasis">hover over any circles</strong> to see the track info</p>
+        <p>
+          <strong class="emphasis">Click the gray question mark</strong> to find
+          out more about this visualization.
+        </p>
+        <p>
+          <strong class="emphasis">Hover over any circles</strong> to see the
+          track info.
+        </p>
+      </div>
     </div>
-  </div>
-  <div class="modal-background modal4" onclick="closeModal()">
-    <div class="modal-child chart">
-      <div class="exit-modal">X</div>
-      <h2>songs</h2>
-      <p>Each bubble is one of your <strong class="emphasis">top 50 played songs</strong> for the time period, where
-        larger bubbles indicate a higher ranking.</p>
-      <h4 class="subtitle">how to read your data</h4>
-      <li><strong class="emphasis">Hover over any bubble</strong> to see the song rank, title, artist, danceability and energy ratings.</li>
-      <li>The y axis is the danceability factor. Danceability describes how suitable a track is for dancing based on a combination of musical elements including
-        <strong class="emphasis"> tempo, rhythm stability, and beat strength.</strong>This is measured on a scale from 0.0 to 1.0 with 1.0 being the most danceable.</li>
-      <li>The x axis is the energry level. Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity.
-        Typically, energetic tracks feel<strong class="emphasis"> fast, loud, and noisy.</strong></li>
+    <div class="modal-background modal4" onclick="closeModal()">
+      <div class="modal-child chart">
+        <div class="exit-modal">X</div>
+        <h2>songs</h2>
+        <p>
+          Each bubble is one of your
+          <strong class="emphasis">top 50 played songs</strong> for the time
+          period, where larger bubbles indicate a higher ranking.
+        </p>
+        <h4 class="subtitle">how to read your data</h4>
+        <li>
+          <strong class="emphasis">Hover over any bubble</strong> to see the
+          song rank, title, artist, danceability and energy ratings.
+        </li>
+        <li>
+          The y axis is the danceability factor. Danceability describes how
+          suitable a track is for dancing based on a combination of musical
+          elements including
+          <strong class="emphasis">
+            tempo, rhythm stability, and beat strength.</strong
+          >This is measured on a scale from 0.0 to 1.0 with 1.0 being the most
+          danceable.
+        </li>
+        <li>
+          The x axis is the energry level. Energy is a measure from 0.0 to 1.0
+          and represents a perceptual measure of intensity and activity.
+          Typically, energetic tracks feel<strong class="emphasis">
+            fast, loud, and noisy.</strong
+          >
+        </li>
+      </div>
     </div>
-  </div>
-  
-  <div class="page-title">Welcome to Danceability! </div>  
-  <div class="content">
-    <div class="choice-buttons">
-      <div id="top-track" class="top-track"></div>
 
-      <!-- <div class="choices">
+    <div class="page-title">Welcome to Danceability!</div>
+    <div class="content">
+      <div class="choice-buttons">
+        <div id="top-track" class="top-track"></div>
+
+        <!-- <div class="choices">
         <button onclick="updateSelection( energy, 'button1')" class="buttons selected" id="button4">energy</button>
         <button onclick="updateSelection( danceability, 'button2')" class="buttons" id="button7">danceability</button>
         <button onclick="updateSelection( tempo, 'button3', null)" class="buttons" id="button5">tempo</button>
       </div> -->
-    
-      <div id="links">
-        <a href="mailto:jjcazel@gmail.com" target="_blank"><i class="fas fa-envelope-square"></i></a>
-        <a href="https://www.linkedin.com/in/jared-cazel-ab84a695/" target="_blank"><i class="fab fa-linkedin"></i></a>
-        <a href="https://github.com/jjcazel" target="_blank"><i class="fab fa-github-square"></i></a>
-        <a href="https://angel.co/jared-cazel" target="_blank"><i class="fab fa-angellist"></i></a>
-        <a href="https://jaredcazel.com" target="_blank"><i class="fas fa-folder-open"></i></a>
+
+        <div id="links">
+          <a href="mailto:jjcazel@gmail.com" target="_blank"
+            ><i class="fas fa-envelope-square"></i
+          ></a>
+          <a
+            href="https://www.linkedin.com/in/jared-cazel-ab84a695/"
+            target="_blank"
+            ><i class="fab fa-linkedin"></i
+          ></a>
+          <a href="https://github.com/jjcazel" target="_blank"
+            ><i class="fab fa-github-square"></i
+          ></a>
+          <a href="https://angel.co/jared-cazel" target="_blank"
+            ><i class="fab fa-angellist"></i
+          ></a>
+          <a href="https://jaredcazel.com" target="_blank"
+            ><i class="fas fa-folder-open"></i
+          ></a>
+        </div>
+        <div class="designed-by">Built by Jared Cazel</div>
       </div>
-      <div class="designed-by">Built by Jared Cazel</div>
-  </div>
-  
-  <div class="canvas"></div>
-  
-  </div>
-</body>
 
-<script>
-    
-  // const buttons = document.getElementsByClassName("buttons")
-  //   for (let i = 0; i < buttons.length; i++) {
-  //     buttons[i].addEventListener('click', function () {
-  //       if (buttons[i].classList.contains('selected')) {
-  //         buttons[i].classList.remove('selected')
-  //       } else {
-  //         buttons[i].classList.add('selected')
-  //       }
-  //     })
-  //   }
+      <div class="canvas"></div>
+    </div>
+    <script>
 
-  const modals = document.getElementsByClassName("modal-background");
-  const tracks = <%- JSON.stringify(audio_features) %>;
-  
-  // const colors = ["#FFA69E", "#FAF3DD", "#B8F2E6", "#AED9E0", "#7F899F", "#8FBC8F", "#D8BFD8"]
-  const strokes = ["#CD3434", "#E1C829", "#92C0B7", "#729172", "#336891", "#729172", "#9C829C"]
+       // const buttons = document.getElementsByClassName("buttons")
+       //   for (let i = 0; i < buttons.length; i++) {
+       //     buttons[i].addEventListener('click', function () {
+       //       if (buttons[i].classList.contains('selected')) {
+       //         buttons[i].classList.remove('selected')
+       //       } else {
+       //         buttons[i].classList.add('selected')
+       //       }
+       //     })
+       //   }
 
-  const width = 800
-  const height = 690
-  const padding = 60
-  
-  const canvas = d3.select(".canvas")
+       const modals = document.getElementsByClassName("modal-background");
+       const tracks = <%- JSON.stringify(audio_features) %>;
 
-  const svg = canvas.append("svg")
-    .attr('width', width)
-    .attr('height', height)
-    .attr('padding-left', 60)
+       // const colors = ["#FFA69E", "#FAF3DD", "#B8F2E6", "#AED9E0", "#7F899F", "#8FBC8F", "#D8BFD8"]
+       const strokes = ["#CD3434", "#E1C829", "#92C0B7", "#729172", "#336891", "#729172", "#9C829C"]
 
-  const x = d3.scaleLinear().domain([0, 1]).range([50, width - 50]);
-  const y = d3.scaleLinear().domain([0, 1]).range([height - 50, 50]);
-  const xAxis = d3.axisBottom(x).ticks(10);
-  const yAxis = d3.axisLeft(y).ticks(10);
+      let svg;
 
-  var div = d3.select("body").append("div")
-    .attr("class", "tooltip")
-    .style("opacity", 0)
+       // Define width and height at a higher scope to be accessible throughout
+       let width = Math.min(800, window.innerWidth - 20); // Initial width
+       let height = Math.min(690, window.innerHeight - 80); // Initial height
 
-  svg.append('g')
-      .selectAll("dot")
-      .data(tracks)
-      .enter()
-      .append("circle")
-      .attr("cx", function (d) { return x(d.energy); })
-      .attr("cy", function (d) { return y(d.danceability); })
-      .attr('r', function (d) {
-        return Math.sqrt((50 - d.idx) * 15)})
-      .style("opacity", 0.6)
-      .style("fill", function () {
-        return "hsl(" + Math.random() * 320 + ",80%,60%)";})
-      .attr('stroke', function (d) {
-        return strokes[d.idx % 7]})
-      .on("mouseover", function (d) {
-        d3.select(this)
-      .style("opacity", 1)
-        div.transition()
-      .duration(200)
-      .style("opacity", .9);
-        div.html("Rank: " + (d.idx + 1) + "<br/>" + `"${d.title}"` + "<br/>" + d.artist + "<br/>" + "Danceability: " +
-        `${d.danceability}` + "<br/>" + "Energy: " + `${d.energy}`)
-      .style("left", (d3.event.pageX + 20) + "px")
-      .style("top", (d3.event.pageY - 28) + "px");})
-      .on("mouseout", function (d) {
-        d3.select(this)
-      .style("opacity", .6)
-        div.transition()
-      .duration(500)
-      .style("opacity", 0);
-      })
-      // .attr('cx', function (d) {
-      //   return (d.energy * (width - 70) + 60)})
+       // Select the canvas and append svg to it
+       const canvas = d3.select(".canvas");
+       svg = canvas.append("svg")
+         .attr('viewBox', `0 0 ${width} ${height}`)
+         .attr('preserveAspectRatio', 'xMidYMid meet');
 
-  svg.append('g')
-    .attr("class", "axis axis-x")
-    .attr("transform", "translate(10," + (height - 50) + ")")
-    .call(xAxis)
-    .selectAll("text")
-    .style("text-anchor", "end")
-    .attr("dx", ".8em")
+       function updateSVGSize() {
+         width = Math.min(800, window.innerWidth - 20);
+         height = Math.min(690, window.innerHeight - 80);
 
-  svg.append('g')
-    .attr("class", "axis axis-y")
-    .attr("transform", "translate(60,0)")
-    .call(yAxis);
+         svg.attr('width', width)
+           .attr('height', height)
+           .attr('viewBox', `0 0 ${width} ${height}`);
+       }
 
-  var question = svg.append('g')
-    .attr("transform", "translate(80,80)")
+       // Call updateSVGSize to initially set the size
+       updateSVGSize();
 
-  svg.append("text")
-    .attr("transform",
-      "translate(" + (width / 2) + " ," +
-      (height - 5) + ")")
-    .attr("dx", "0.8em")
-    .style("text-anchor", "middle")
-    .text("energy");
+       // Listen to resize events
+       window.addEventListener('resize', updateSVGSize);
 
-  svg.append("text")
-    .attr("transform",
-      "translate(" + (width - 100) + " ," +
-      (height - 18) + ")")
-    .style("text-anchor", "middle")
-    .text("high energy --> ")
-    .attr("font-size", "12px")
 
-  svg.append("text")
-    .attr("transform",
-      "translate(" + (120) + " ," +
-      (height - 18) + ")")
-    .style("text-anchor", "middle")
-    .text("<-- low energy")
-    .attr("font-size", "12px")
+       const x = d3.scaleLinear().domain([0, 1]).range([50, width - 50]);
+       const y = d3.scaleLinear().domain([0, 1]).range([height - 50, 50]);
+       const xAxis = d3.axisBottom(x).ticks(10);
+       const yAxis = d3.axisLeft(y).ticks(10);
 
-  svg.append("text")
-    .attr("class", "y-axis-text")
-    .attr("transform", "rotate(-90)")
-    .attr("y", 0)
-    .attr("x", 0 - (height / 2))
-    .attr("dy", "1em")
-    .style("text-anchor", "middle")
-    .text("danceability");
+       var div = d3.select("body").append("div")
+         .attr("class", "tooltip")
+         .style("opacity", 0)
 
-  question.append('rect')
-    .attr("class", "question-btn modal4")
-    .attr("fill", "rgb(210,210,210)")
-    .attr('x', 0)
-    .attr('y', -20)
-    .attr('rx', "50%")
-    .attr('ry', "50%")
-    .attr('r', 15)
+       svg.append('g')
+           .selectAll("dot")
+           .data(tracks)
+           .enter()
+           .append("circle")
+           .attr("cx", function (d) { return x(d.energy); })
+           .attr("cy", function (d) { return y(d.danceability); })
+           .attr('r', function (d) {
+             return Math.sqrt((50 - d.idx) * 15)})
+           .style("opacity", 0.6)
+           .style("fill", function () {
+             return "hsl(" + Math.random() * 320 + ",80%,60%)";})
+           .attr('stroke', function (d) {
+             return strokes[d.idx % 7]})
+           .on("mouseover", function (d) {
+             d3.select(this)
+           .style("opacity", 1)
+             div.transition()
+           .duration(200)
+           .style("opacity", .9);
+             div.html("Rank: " + (tracks.length - sortedTracks.indexOf(d) ) + ` "${d.title}"` + "<br/>" + d.artist + "<br/>" + "Danceability: " +
+             `${d.danceability}` + "<br/>" + "Energy: " + `${d.energy}`)
+           .style("left", (d3.event.pageX + 20) + "px")
+           .style("top", (d3.event.pageY - 28) + "px");})
+           .on("mouseout", function (d) {
+             d3.select(this)
+           .style("opacity", .6)
+             div.transition()
+           .duration(500)
+           .style("opacity", 0);
+           })
+           // .attr('cx', function (d) {
+           //   return (d.energy * (width - 70) + 60)})
 
-  question.append('text')
-    .attr('class', "question-btn")
-    .attr('x', 7)
-    .attr('y', -3)
-    .attr("font-size", 18)
-    .text("?")
-    .attr('fill', 'white')   
-  
-  // function to open modal on click of question mark
-  const btns = document.getElementsByClassName("question-btn")
+       svg.append('g')
+         .attr("class", "axis axis-x")
+         .attr("transform", "translate(10," + (height - 50) + ")")
+         .call(xAxis)
+         .selectAll("text")
+         .style("text-anchor", "end")
+         .attr("dx", ".8em")
 
-  const temp = modals[3]
-  
-  for (let i = 0; i < btns.length; i++) {
-    btns[i].addEventListener('click', function () {
-      if (modals[i].classList.contains('show-modal')) {
-        modals[i].classList.remove('show-modal')
-      } else {
-        modals[i].classList.add('show-modal')
-      }
-    });
-  }
+       svg.append('g')
+         .attr("class", "axis axis-y")
+         .attr("transform", "translate(60,0)")
+         .call(yAxis);
 
-  // display the most danceable song on the left side
-  let topTitle;
-  let topArtist;
+       var question = svg.append('g')
+         .attr("transform", "translate(80,80)")
 
-  function sort_by_key(array, key) {
-    return array.sort(function (a, b) {
-      var x = a[key]; var y = b[key];
-      return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-    });
-  }
+       svg.append("text")
+         .attr("transform",
+           "translate(" + (width / 2) + " ," +
+           (height - 5) + ")")
+         .attr("dx", "0.8em")
+         .style("text-anchor", "middle")
+         .text("energy");
 
-  let sortedTracks = sort_by_key(tracks, 'danceability');
-  // console.log(sortedTracks)
-  topTitle = sortedTracks[49].title;
-  topArtist = sortedTracks[49].artist;
+       svg.append("text")
+         .attr("transform",
+           "translate(" + (width - 100) + " ," +
+           (height - 18) + ")")
+         .style("text-anchor", "middle")
+         .text("high energy --> ")
+         .attr("font-size", "12px")
 
-  document.getElementById("top-track").innerHTML = `Your most danceable song is: 
-    <br /> <strong class="most-danced1">${topTitle}</strong> by 
-    <strong class="most-danced">${topArtist}</strong>`
+       svg.append("text")
+         .attr("transform",
+           "translate(" + (120) + " ," +
+           (height - 18) + ")")
+         .style("text-anchor", "middle")
+         .text("<-- low energy")
+         .attr("font-size", "12px")
 
-  // function to close modals
-  function closeModal() {
-    for (let i = 0; i < modals.length; i++) {
-      if (modals[i].classList.contains('show-modal')) {
-        modals[i].classList.remove('show-modal')
-      }
-    }
-  }
-  </script>
+       svg.append("text")
+         .attr("class", "y-axis-text")
+         .attr("transform", "rotate(-90)")
+         .attr("y", 0)
+         .attr("x", 0 - (height / 2))
+         .attr("dy", "1em")
+         .style("text-anchor", "middle")
+         .text("danceability");
 
+       question.append('rect')
+         .attr("class", "question-btn modal4")
+         .attr("fill", "rgb(210,210,210)")
+         .attr('x', 0)
+         .attr('y', -20)
+         .attr('rx', "50%")
+         .attr('ry', "50%")
+         .attr('r', 15)
+
+       question.append('text')
+         .attr('class', "question-btn")
+         .attr('x', 7)
+         .attr('y', -3)
+         .attr("font-size", 18)
+         .text("?")
+         .attr('fill', 'white')
+
+       // function to open modal on click of question mark
+       const btns = document.getElementsByClassName("question-btn")
+
+       const temp = modals[3]
+
+       for (let i = 0; i < btns.length; i++) {
+         btns[i].addEventListener('click', function () {
+           if (modals[i].classList.contains('show-modal')) {
+             modals[i].classList.remove('show-modal')
+           } else {
+             modals[i].classList.add('show-modal')
+           }
+         });
+       }
+
+       // display the most danceable song on the left side
+       let topTitle;
+       let topArtist;
+
+       function sort_by_key(array, key) {
+         return array.sort(function (a, b) {
+           var x = a[key]; var y = b[key];
+           return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+         });
+       }
+
+       let sortedTracks = sort_by_key(tracks, 'danceability');
+       // console.log(sortedTracks)
+       console.log(sortedTracks);
+       topTitle = sortedTracks[49].title;
+       topArtist = sortedTracks[49].artist;
+
+       document.getElementById("top-track").innerHTML = `Your most danceable song is:
+         <br /> <strong class="most-danced1">${topTitle}</strong> by
+         <strong class="most-danced">${topArtist}</strong>`
+
+       // function to close modals
+       function closeModal() {
+         for (let i = 0; i < modals.length; i++) {
+           if (modals[i].classList.contains('show-modal')) {
+             modals[i].classList.remove('show-modal')
+           }
+         }
+       }
+    </script>
+  </body>
 </html>

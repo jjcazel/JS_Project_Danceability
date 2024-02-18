@@ -16,14 +16,18 @@ router.get('/callback', function (req, res) {
   spotifyBackend.spotifyAuth(req, res)
 });
 
-router.get('/app', function (req, res, next) {
-// console.log(req.session)
-  const { audio_features } = req.session
-  // console.log(audio_features)
-  res.render('visualization', {
-    audio_features: audio_features
-  })
-})
+router.get("/app", function (req, res, next) {
+  if (req.session && req.session.audio_features) {
+    res.render("visualization", {
+      audio_features: req.session.audio_features,
+    });
+  } else {
+    // Handle the case where audio_features is not available
+    res.render("visualization", {
+      audio_features: {}, // Send an empty object or appropriate default value
+    });
+  }
+});
 
 module.exports = router;
 

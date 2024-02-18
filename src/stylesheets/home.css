@@ -1,6 +1,6 @@
 body {
-  font-family: 'Indie Flower', cursive;
-  font-weight: 100;
+  font-family: "Indie Flower";
+  font-weight: normal;
   user-select: none;
   position: relative;
 }
@@ -41,7 +41,7 @@ body {
 }
 
 rect {
-  fill:#e3edf91e;
+  fill: #e3edf91e;
   pointer-events: all;
   font-weight: 100;
 }
@@ -50,4 +50,3 @@ circle {
   fill: none;
   stroke-width: 2.5px;
 }
-
