@@ -2,7 +2,7 @@
 
 ## Overview
 
-**Danceability** elegantly bridges the gap between your Spotify listening habits and the vibrant world of data visualization. Experience the live application [here](https://danceability1.herokuapp.com/) and embark on a journey through your musical preferences, visualized.
+**Danceability** elegantly bridges the gap between your Spotify listening habits and the vibrant world of data visualization. <!-- Experience the live application [here](https://danceability1.herokuapp.com/) and embark on a journey through your musical preferences, visualized. -->
 
 Leveraging the rich data from Spotify's API, Danceability presents an interactive exploration of your top 50 tracks, focusing on their danceability and energy levels. This project was born out of a passion for music, a curiosity for data visualization, and the challenge of harnessing the power of Spotify's API and the d3.js library.
 
