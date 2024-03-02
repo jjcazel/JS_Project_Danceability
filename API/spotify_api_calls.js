@@ -40,11 +40,10 @@ function generateRandomString(length) {
 }
 
 const spotifyApi = new SpotifyWebApi({
-  clientId: process.env.SPOTIFY_CLIENT_ID,
-  clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+  clientId: client_id,
+  clientSecret: client_secret,
   redirectUri: redirect_uri,
 });
-
 
 module.exports.spotifyAuth = function (req, res) {
   let track_info = [];
