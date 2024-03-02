@@ -1,4 +1,4 @@
-// require("dotenv").config(); // At the top of your main app file
+require("dotenv").config(); // At the top of your main app file
 
 const express = require("express");
 const app = express();
