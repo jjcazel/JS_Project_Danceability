@@ -10,7 +10,7 @@
     "not dead"
   ],
   "scripts": {
-    "start": "node ./bin/server"
+    "start": "node ./api/server"
   },
   "author": "Jared Cazel",
   "license": "ISC",
