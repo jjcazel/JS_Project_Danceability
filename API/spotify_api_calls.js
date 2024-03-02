@@ -2,10 +2,7 @@ const SpotifyWebApi = require("spotify-web-api-node");
 const querystring = require("querystring");
 // const clusterMaker = require('clusters');
 
-const redirect_uri =
-  process.env.NODE_ENV === "production"
-    ? process.env.REDIRECT_URI_PROD
-    : process.env.REDIRECT_URI_DEV;
+const redirect_uri = "https://spotify-danceability.vercel.app/callback";
 
 let client_id = process.env.SPOTIFY_CLIENT_ID;
 let client_secret = process.env.SPOTIFY_CLIENT_SECRET;
