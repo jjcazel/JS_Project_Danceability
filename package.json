@@ -10,7 +10,8 @@
     "not dead"
   ],
   "scripts": {
-    "start": "node ./api/server"
+    "start": "node ./api/server",
+    "build": "node ./api/server"
   },
   "author": "Jared Cazel",
   "license": "ISC",
@@ -23,7 +24,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.0",
     "fibers": "^4.0.1",
-    "file-system": "^2.2.2",
+    "file-system": "^1.2.2",
     "mini-css-extract-plugin": "^0.8.0",
     "node-fetch": "^2.6.7",
     "postcss-loader": "^8.1.0",
@@ -42,5 +43,8 @@
   "bugs": {
     "url": "https://github.com/jjcazel/JS_Project_Danceability/issues"
   },
-  "homepage": "https://github.com/jjcazel/JS_Project_Danceability#readme"
+  "homepage": "https://github.com/jjcazel/JS_Project_Danceability#readme",
+  "devDependencies": {
+    "webpack": "^5.90.3"
+  }
 }

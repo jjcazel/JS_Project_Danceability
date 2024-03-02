@@ -7,7 +7,7 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const expressSession = require("express-session");
 const favicon = require("serve-favicon");
-const index = require("./api/index");
+const index = require("./API/index");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
