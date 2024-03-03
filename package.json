@@ -10,7 +10,7 @@
     "not dead"
   ],
   "scripts": {
-    "start": "node ./api/server",
+    "start": "node ./bin/server",
     "vercel-build": "echo hello"
   },
   "author": "Jared Cazel",
