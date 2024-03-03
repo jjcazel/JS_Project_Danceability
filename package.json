@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "start": "node ./api/server",
-    "build": "node ./api/server"
+    "vercel-build": "echo hello"
   },
   "author": "Jared Cazel",
   "license": "ISC",
