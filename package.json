@@ -46,6 +46,6 @@
   "homepage": "https://github.com/jjcazel/JS_Project_Danceability#readme",
   "devDependencies": {
     "mini-css-extract-plugin": "^1.3.0",
-    "webpack": "^5.90.3"
+    "webpack": "^5.110.1"
   }
 }
