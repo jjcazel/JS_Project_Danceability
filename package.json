@@ -24,7 +24,6 @@
     "ejs": "^3.1.10",
     "express": "^4.22.2",
     "express-session": "^1.19.0",
-    "fibers": "^4.0.1",
     "file-system": "^1.2.2",
     "node-fetch": "^2.6.7",
     "postcss-loader": "^8.1.0",
