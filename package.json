@@ -27,7 +27,7 @@
     "file-system": "^1.2.2",
     "node-fetch": "^2.6.7",
     "postcss-loader": "^8.1.0",
-    "query-string": "^6.8.3",
+    "query-string": "^9.5.0",
     "router-express": "^1.5.2",
     "sass": "^1.23.0",
     "sass-loader": "^8.0.0",
